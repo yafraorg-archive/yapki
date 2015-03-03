@@ -24,6 +24,7 @@
 
 import os
 from eve import Eve
+from eve import request, jsonify
 
 # Heroku support: bind to PORT if defined, otherwise default to 5000.
 if 'PORT' in os.environ:
@@ -37,6 +38,11 @@ else:
 
 app = Eve()
 
+@app.route("/ssl")
+def SslPage():
+    return jsonify(username='martin',
+                       email='www@gmail.com',
+                       id='test111')
 
 @app.after_request
 def after_request(response):
