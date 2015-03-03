@@ -24,7 +24,7 @@
 
 import os
 from eve import Eve
-from eve import request, jsonify
+from flask import jsonify
 
 # Heroku support: bind to PORT if defined, otherwise default to 5000.
 if 'PORT' in os.environ:
@@ -34,7 +34,7 @@ if 'PORT' in os.environ:
     host = '0.0.0.0'
 else:
     port = 8080
-    host = '127.0.0.1'
+    host = '0.0.0.0'
 
 app = Eve()
 
