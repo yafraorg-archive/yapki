@@ -26,19 +26,25 @@
 
 # variables must be set by CI service
 # setup local environment first https://github.com/yafraorg/yafra/wiki/Development-Environment
-export BASENODE=/work/repos/yafra
-export YAPKI=$BASENODE/org.yafra.yapki
+export BASENODE=/work/repos
+export YAPKI=$BASENODE/yapki
+export YAFRA=$BASENODE/yafra
+export YAFRADB=$BASENODE/yafra-database
+
 export WWWDIR=/var/www/html
-export WORKNODE=/work/yafra-runtime
+
 export PKINODE=/data/pki
-test -d $WORKNODE/bin || mkdir -p $WORKNODE/bin
 test -d $PKINODE || mkdir -p $PKINODE
+
+export PKISERVER=/work/pkiserver
+test -d $PKISERVER || mkdir -p $PKISERVER
 
 echo "setup client"
 cd $YAPKI
 cd www
 npm update
 node_modules/.bin/bower --allow-root update
+cd app
 cp -r * $WWWDIR
 
 echo "setup openssl"
@@ -50,15 +56,16 @@ mkdir yapki/newcerts
 mkdir yapki/private
 cd $YAPKI/pki
 cp * $PKINODE
+echo "WARNING: if not done already - create as first action CA.pl -newca!"
 
-echo "setup server"
+echo "setup server cgi perl"
 cd $YAPKI
 cp cgi/*.pl /usr/lib/cgi-bin/
 sudo service apache2 start
 
-mkdir /work/ssl-rest
-cp $YAPKI/backend/* /work/ssl-rest
-cd /work/ssl-rest
+echo "setup server rest python"
+cp $YAPKI/backend/* $PKISERVER
+cd $PKISERVER
 pip install -r requirements.txt
 
 echo "done - running now YAPKI under nginx/perl/python with admin scripts under /usr/local/bin"

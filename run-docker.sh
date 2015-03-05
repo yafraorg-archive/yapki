@@ -23,10 +23,16 @@
 #
 # docker run script
 #
-export BASENODE=/work/repos/yafra
-export YAPKI=$BASENODE/org.yafra.yapki
+export BASENODE=/work/repos
+export YAPKI=$BASENODE/yapki
+export YAFRA=$BASENODE/yafra
+export YAFRADB=$BASENODE/yafra-database
 
 echo "update git"
+cd $YAFRA
+git pull
+cd $YAFRADB
+git pull
 cd $YAPKI
 git pull
 
