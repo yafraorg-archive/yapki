@@ -65,7 +65,7 @@ use CGI;
 
 # openssl locations
 my $openssl = '/data/pki';
-my $pki = $openssl . '/CA_ROOT';
+my $pki = $openssl . '/yapki';
 my $pkicounter = $pki . '/serial';
 my $pkicerts = $pki . '/index.txt';
 my $config = $openssl . '/openssl.cnf';
@@ -82,7 +82,7 @@ $fsel = $query->param('sel');
 my $output;
 if ($^O eq "MSWin32")
 	{
-	$output = "/data/pki/CA_ROOT/www/systeminfo.txt";	# location for storage
+	$output = "/data/pki/www/systeminfo.txt";	# location for storage
 #	$output = "c:/pingout.txt";	# location for storage
 	}
 else
@@ -150,11 +150,11 @@ sub Fcrl
 	{
 	$systemcall = sprintf ("openssl ca -gencrl -config $config -crldays $crldays -crlexts crl_ext -out $pkicrl -passin pass:\"$fpwd\"");
 	system($systemcall);
-	$systemcall = sprintf ("openssl crl -in CA_ROOT/crl/cayafra.crl -outform DER -out CA_ROOT/crl/cayafra-der.crl");
+	$systemcall = sprintf ("openssl crl -in yapki/crl/cayafra.crl -outform DER -out yapki/crl/cayafra-der.crl");
 	system($systemcall);
 	print "CRL done<br>\n";
 	# copy file to web page of weblinux or yafra.ch
-	$systemcall = sprintf ("cp CA_ROOT/crl/cayafra*.crl ../www/secure/.");
+	$systemcall = sprintf ("cp yapki/crl/cayafra*.crl ../www/secure/.");
 	system($systemcall);
 	print "CRL published to https<br>\n";
 	#print "Starting to put the crl to yafra.ch by ftp:<br>\n";
@@ -187,13 +187,13 @@ sub Frenew
 
 sub Frevoke
 	{
-	$systemcall = sprintf ("openssl ca -revoke CA_ROOT/newcerts/$fsel.pem -config $config -passin pass:\"$fpwd\"");
+	$systemcall = sprintf ("openssl ca -revoke yapki/newcerts/$fsel.pem -config $config -passin pass:\"$fpwd\"");
 	system($systemcall);
 	}
 
 sub Fdetails
 	{
-	$systemcall = sprintf ("openssl x509 -in yafra/newcerts/$fsel.pem -noout -text > $output");
+	$systemcall = sprintf ("openssl x509 -in yapki/newcerts/$fsel.pem -noout -text > $output");
 	system($systemcall);
 	print "<p><b>certificate id $fsel details: ";
 	print "<pre>";
@@ -230,7 +230,7 @@ sub Finfo
 
 	print "<p>list of certificates from database:\n";
 
-	print "<form name=\"mngcerts\" action=\"/perl-run/pki-mgmt.pl\" method=\"get\">\n";
+	print "<form name=\"mngcerts\" action=\"/cgi-bin/pki-mgmt.pl\" method=\"get\">\n";
 	print "<table border=\"0\" frame=\"border\">\n";
 	print "<tr style=\"background-color:CCFFFF;\"><td>select</td><td>id:</td><td>state:</td><td>end/valid till date:</td><td>common name:</td></tr>\n";
 	open (IDX,$pkicerts) || warn "could not open file for reading";
