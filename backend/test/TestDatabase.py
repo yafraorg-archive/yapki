@@ -1,4 +1,3 @@
-#!/bin/sh
 #-------------------------------------------------------------------------------
 # Licensed to the Apache Software Foundation (ASF) under one
 # or more contributor license agreements.  See the NOTICE file
@@ -19,23 +18,17 @@
 #
 # (c) yafra.org, 2002, Switzerland
 #
-# function:	renew web server certificate, your former private key remains the same
-#
-# argument: hex id of cert and start and end date
-#
-# CVS tag:   $Name:  $
-# author:    $Author: mwn $
-# revision:  $Revision: 16 $
 #-------------------------------------------------------------------------------
+#
+# python test unit
+__author__ = 'mwn'
 
-# arguments are: 1: hex no of cert request to renew
-#                2/3: start and end date 112233445566Z
-if [ -z "$3" ]; then
-        echo Please specify cert hex_id for renewal and start and stop date
-	echo as YYMMDDHHMMSSZ where the Z is Z and not to changed!
-        exit
-fi
+import unittest
+
+class MyTestCase(unittest.TestCase):
+    def test_something(self):
+        self.assertEqual(True, False)
 
 
-# renew pem request from database (see index which to renew)
-openssl ca -config openssl.cnf -in nissle/certs/cert-id$1.csr -out nissle/certs/cert-id$1new.crt -startdate $2 -enddate $3 -policy policy_anything 
+if __name__ == '__main__':
+    unittest.main()

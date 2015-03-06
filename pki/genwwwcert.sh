@@ -30,15 +30,19 @@
 
 # arguments are: 1: certificate basename
 if [ -z "$1" ]; then
-        echo Please specify certfile basename
+        echo "Please specify a basename to be used for the new certificate"
         exit
 fi
 
 # create WWW server request
 openssl genrsa -des3 -out $1.key 1024
 openssl req -config openssl.cnf -new -sha1 -key $1.key -out $1.csr
+
 # sign WWW server request with CA
+echo "\nSign the new certificate now through a CA"
 openssl ca -config openssl.cnf -policy policy_anything -out $1.crt -infiles $1.csr
+
 # create RSA private key with password for automatic server startup
+echo "\nCreate a new RSA private key which does not need a password to enable automatic server startup"
 cp $1.key $1.key.org
 openssl rsa -in $1.key.org -out $1.key

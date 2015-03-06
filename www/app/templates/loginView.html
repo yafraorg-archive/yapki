@@ -1,0 +1,56 @@
+<ion-view title="Aamälde">
+    <!--- cache-view="false" --->
+    <ion-content class="has-header padding">
+
+        <ion-list ng-if="authenticated">
+            <ion-item>Willkomme:
+                <div ng-bind="mcbuser.regEmail" ng-if="authenticated">!</div>
+            </ion-item>
+        </ion-list>
+
+        <div class="row"><div class="col">
+        <form name="loginForm" ng-if="!authenticated">
+            Bitte dini e-mail Adrässe so ygeh wie uf dr Adrässlischte vermerkt!<br />
+            <input class="item item-input input-highlight" ng-model="formLogin.regEmail" placeholder="Dini email adrässe" type="email" name="regEmail" ng-required="true">
+            <span class="error" ng-show="loginForm.regEmail.$error.required">email zwingend ygeeh!</span>
+            <span class="error" ng-show="loginForm.regEmail.$error.email">email isch nid giltig!</span>
+
+            <br />
+            Bitte aamälde yber ei Dienscht - nimm immer dr glychi!!<br />
+
+            <!--- debug
+           --->
+            <button ng-disabled="loginForm.regEmail.$error.required || loginForm.regEmail.$error.email" ng-click="googleLogin()" class="button button-block button-primary">Google</button>
+            <div ng-if="appdebug">
+                <button ng-disabled="loginForm.regEmail.$error.required || loginForm.regEmail.$error.email" ng-click="linkedinLogin()" class="button button-block button-primary">LinkedIn</button>
+                <button ng-disabled="loginForm.regEmail.$error.required || loginForm.regEmail.$error.email" ng-click="dropboxLogin()" class="button button-block button-primary">Dropbox</button>
+                <button ng-disabled="loginForm.regEmail.$error.required || loginForm.regEmail.$error.email" ng-click="facebookLogin()" class="button button-block button-primary">Facebook</button>
+                <button ng-disabled="loginForm.regEmail.$error.required || loginForm.regEmail.$error.email" ng-click="instagramLogin()" class="button button-block button-primary">Instagram</button>
+            </div>
+            <button ng-disabled="loginForm.regEmail.$error.required || loginForm.regEmail.$error.email" ng-click="debugLogin()" class="button button-block button-primary">MCB</button>
+        </form>
+
+            <div ng-if="appdebug">
+                Registration e-mail: <span ng-bind="mcbuser.regEmail"></span><br />
+                Oauth e-mail: <span ng-bind="mcbuser.regEmail"></span><br />
+                Oauth provider (code and name): <span ng-bind="mcbuser.oauthProvider"></span> <span ng-bind="mcbuser.oauthProviderName"></span><br />
+                Oauth apikey: <span ng-bind="mcbuser.oauthAccessToken"></span><br />
+                Device pushtoken: <span ng-bind="mcbuser.pushToken"></span><br />
+                Device MyPush: <span ng-bind="myPush"></span><br />
+                Device ID: <span ng-bind="myDevice.uuid"></span><br />
+                Status loggedIn and check: <span ng-bind="mcbuser.loggedIn"></span>  <span ng-bind="mcbuser.check"></span><br />
+                User ID: <span ng-bind="mcbuser.userId"></span><br />
+            </div>
+
+        </div></div>
+
+        <button ng-if="authenticated" ng-click="check()" class="button button-block button-primary">Check di status</button>
+        <ion-list ng-if="authenticated">
+            <ion-item ng-if="checked">Validiert! Du bisch korrägt aagmäldet. Push Token: <div ng-bind="mcbuser.pushToken" ng-if="checked"></div>
+            </ion-item>
+            <ion-item ng-if="!checked">Nid validiert!</ion-item>
+        </ion-list>
+        <button ng-if="authenticated" ng-click="doLogout()" class="button button-block button-primary">Abmälde</button>
+
+    </ion-content>
+</ion-view>
