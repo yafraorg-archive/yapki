@@ -1,3 +1,4 @@
+#!/usr/bin/python
 #-------------------------------------------------------------------------------
 # Licensed to the Apache Software Foundation (ASF) under one
 # or more contributor license agreements.  See the NOTICE file
@@ -24,13 +25,11 @@
 __author__ = 'mwn'
 
 #An example of a class
-class database:
-    def __init__(self,x,y):
-        self.x = x
-        self.y = y
+class Database:
+    def __init__(self):
         self.description = "This shape has not been described yet"
         self.author = "Nobody has claimed to make this shape yet"
     def list(self):
-        file = open('newfile.txt', 'r')
-        file.read()
-        return self.x * self.y
+        file = open('/data/pki/yapki/index.txt', 'r')
+        index = file.read()
+        return index

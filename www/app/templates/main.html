@@ -1,0 +1,57 @@
+<div layout="column" layout-fill>
+
+	<md-toolbar md-scroll-shrink>
+		<div class="md-toolbar-tools">
+        <md-button class="menu-icon" ng-click="toggleLeft()"
+							class="md-primary" hide-gt-md aria-label="Toggle Menu">
+            <i class="flaticon-menu55"></i>
+        </md-button>
+				<span>yapki - Yet Another PKI</span>
+		</div>
+	</md-toolbar>
+
+	<md-content flex class="md-padding">
+		<div ng-controller="DefaultCtrl" layout="column">
+			<section layout="row" flex>
+				<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+					<md-toolbar class="md-theme-indigo">
+						<h1 class="md-toolbar-tools">Features</h1>
+					</md-toolbar>
+					<md-content class="md-padding">
+						<p hide-md show-gt-md>
+							<md-list>
+							<md-item>
+								<md-item-content>
+									<md-button ui-sref="menu.db">Database</md-button>
+								</md-item-content>
+							</md-item>
+							<md-item>
+								<md-item-content>
+									<md-button ui-sref="menu.req">Request</md-button>
+								</md-item-content>
+							</md-item>
+							<md-item>
+								<md-item-content>
+									<md-button ui-sref="menu.help">Help</md-button>
+								</md-item-content>
+							</md-item>
+							</md-list>
+						</p>
+						<md-button ng-click="close()" class="md-primary" hide-gt-md>
+							Close Feature Menu
+						</md-button>
+					</md-content>
+				</md-sidenav>
+				<div layout="column" layout-fill>
+					<md-content ui-view="menuContent" class="md-padding" flex>
+						<md-button ng-click="toggleLeft()"
+									  class="md-primary" hide-gt-md>
+							Toggle left
+						</md-button>
+					</md-content>
+				</div>
+			</section>
+		</div>
+	</md-content>
+</div>
+</div>

@@ -29,6 +29,7 @@ var PkiApp = angular.module('yapkiApp', [
     'ngResource',
     'ngMaterial',
     'yapki.services',
+    'yapki.services-rest',
     'yapki.controllers']);
 
 
@@ -36,7 +37,7 @@ var PkiApp = angular.module('yapkiApp', [
 PkiApp.constant('appversion', '1.0.1');
 
 // Debug mode
-PkiApp.constant('appdebug', false);
+PkiApp.constant('appdebug', true);
 
 // Server URL
 //PkiApp.constant('pkiserver', 'http://pki.yafra.org:8080/');
@@ -47,7 +48,7 @@ PkiApp.constant('pkihelp', 'http://pki.yafra.org/');
 
 
 PkiApp.run(['SysMsg', function (SysMsg) {
-    SysMsg.debug("run() - push dummy token registered - runs on Browser");
+    SysMsg.debug("run() - runs on Browser");
 }]);
 
 /**
@@ -56,14 +57,14 @@ PkiApp.run(['SysMsg', function (SysMsg) {
 PkiApp.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
 
     $stateProvider
-        .state('menu', {url: "/pki", abstract: true, templateUrl: "templates/menu.html", controller: 'DefaultCtrl'})
-        .state('menu.home', {
-            url: '/home',
-            views: {'menuContent': {templateUrl: 'templates/homeView.html', controller: 'DefaultCtrl'}}
+        .state('menu', {url: "/pki", abstract: true, templateUrl: "templates/main.html", controller: 'DefaultCtrl'})
+        .state('menu.req', {
+            url: '/req',
+            views: {'menuContent': {templateUrl: 'templates/reqView.html', controller: 'ReqCtrl'}}
         })
         .state('menu.db', {
             url: '/db',
-            views: {'menuContent': {templateUrl: 'templates/dbView.html', controller: 'DefaultCtrl'}}
+            views: {'menuContent': {templateUrl: 'templates/dbView.html', controller: 'DbCtrl'}}
         })
         .state('menu.help', {
             url: '/help',

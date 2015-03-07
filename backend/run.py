@@ -25,6 +25,7 @@
 import os
 from eve import Eve
 from flask import jsonify
+from pkimgmt import Database
 
 # Heroku support: bind to PORT if defined, otherwise default to 5000.
 if 'PORT' in os.environ:
@@ -40,9 +41,15 @@ app = Eve()
 
 @app.route("/ssl")
 def SslPage():
+    myDb = Database()
     return jsonify(username='martin',
                        email='www@gmail.com',
                        id='test111')
+
+@app.route("/info")
+def InfoPage():
+    return jsonify(version='1.0.1',
+                   status='OK')
 
 @app.after_request
 def after_request(response):

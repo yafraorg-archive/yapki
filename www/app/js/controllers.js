@@ -24,15 +24,39 @@ var PkiController = angular.module('yapki.controllers', []);
  */
 PkiController.controller('DefaultCtrl', ['$scope', '$mdSidenav', 'SysMsg', function ($scope, $mdSidenav, SysMsg) {
 	'use strict';
-  $scope.openLeftMenu = function() {
-    $mdSidenav('left').toggle();
+  $scope.toggleLeft = function() {
+    $mdSidenav('left').toggle()
+                      .then(function(){
+                          SysMsg.debug("toggle left is done");
+                      });
+  };
+  $scope.close = function() {
+    $mdSidenav('left').close()
+                      .then(function(){
+                        SysMsg.debug("close LEFT is done");
+                      });
   };
 
 }]);
 
+/**
+ * Certificate Database controller
+ */
+PkiController.controller('DbCtrl', ['$scope', '$mdSidenav', 'SysMsg', function ($scope, $mdSidenav, SysMsg) {
+	'use strict';
+
+}]);
 
 /**
- * A simple example service that returns some data.
+ * Certificate Request controller
+ */
+PkiController.controller('ReqCtrl', ['$scope', '$mdSidenav', 'SysMsg', function ($scope, $mdSidenav, SysMsg) {
+	'use strict';
+}]);
+
+
+/**
+ * HELP controller.
  */
 PkiController.controller('HelpCtrl', ['$scope', 'appversion', 'SysMsg', 'yapkihelp', function ($scope, appversion, SysMsg, yapkihelp) {
 	// Help controller, giving some about infos
