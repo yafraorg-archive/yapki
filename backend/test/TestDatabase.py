@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #-------------------------------------------------------------------------------
 # Licensed to the Apache Software Foundation (ASF) under one
 # or more contributor license agreements.  See the NOTICE file
@@ -23,12 +24,17 @@
 # python test unit
 __author__ = 'mwn'
 
+from ..pkimgmt import database
+
 import unittest
 
-class MyTestCase(unittest.TestCase):
-    def test_something(self):
-        self.assertEqual(True, False)
+class TestDatabase(unittest.TestCase):
+    def setUp(self):
+        self.db = database.Database()
 
+    def testList(self):
+        x = self.db.list()
+        print( "Output " % (x))
 
 if __name__ == '__main__':
     unittest.main()
