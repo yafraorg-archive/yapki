@@ -16,7 +16,6 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-'use strict';
 
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
@@ -48,6 +47,7 @@ PkiApp.constant('pkihelp', 'http://pki.yafra.org/');
 
 
 PkiApp.run(['SysMsg', function (SysMsg) {
+    'use strict';
     SysMsg.debug("run() - runs on Browser");
 }]);
 
@@ -55,6 +55,7 @@ PkiApp.run(['SysMsg', function (SysMsg) {
  * Routing table including associated controllers.
  */
 PkiApp.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+    'use strict';
 
     $stateProvider
         .state('menu', {url: "/pki", abstract: true, templateUrl: "templates/main.html", controller: 'DefaultCtrl'})

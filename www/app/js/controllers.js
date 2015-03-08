@@ -58,23 +58,14 @@ PkiController.controller('ReqCtrl', ['$scope', '$mdSidenav', 'SysMsg', function 
 /**
  * HELP controller.
  */
-PkiController.controller('HelpCtrl', ['$scope', 'appversion', 'SysMsg', 'yapkihelp', function ($scope, appversion, SysMsg, yapkihelp) {
+PkiController.controller('HelpCtrl', ['$scope', 'appversion', 'SysMsg', 'pkihelp', function ($scope, appversion, SysMsg, pkihelp) {
 	// Help controller, giving some about infos
 	'use strict';
 	$scope.version = appversion;
 	$scope.device = SysMsg.device();
-	$scope.url = yapkihelp;
+	$scope.url = pkihelp;
 	SysMsg.debug("help web page is: " + $scope.url);
 	$scope.closeBrowser = function () {
-		$scope.infotext = 'Closed browser';
-	};
-	$scope.loadStart = function () {
-		$scope.infotext = 'load start browser';
-	};
-	$scope.loadStop = function () {
-		$scope.infotext = 'load stop browser';
-	};
-	$scope.loadError = function () {
-		$scope.infotext = 'load error with browser';
+		SysMsg.debug('Closed browser');
 	};
 }]);
