@@ -1,6 +1,6 @@
 <div layout="column" layout-fill>
 
-	<md-toolbar md-scroll-shrink>
+	<md-toolbar>
 		<div class="md-toolbar-tools">
         <md-button class="menu-icon" ng-click="toggleLeft()"
 							class="md-primary" hide-gt-md aria-label="Toggle Menu">
@@ -11,9 +11,9 @@
 	</md-toolbar>
 
 	<md-content flex class="md-padding">
-		<div ng-controller="DefaultCtrl" layout="column">
+		<div layout="column">
 			<section layout="row" flex>
-				<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+				<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" flex>
 					<md-toolbar class="md-theme-indigo">
 						<h3 class="md-toolbar-tools">Features</h3>
 					</md-toolbar>
@@ -22,36 +22,29 @@
 							<md-list>
 							<md-item>
 								<md-item-content>
-									<md-button ui-sref="menu.db">Database</md-button>
+									<md-button ui-sref="menu.db" ng-click="toggleLeft()">Database</md-button>
 								</md-item-content>
 							</md-item>
 							<md-item>
 								<md-item-content>
-									<md-button ui-sref="menu.req">Request</md-button>
+									<md-button ui-sref="menu.req" ng-click="toggleLeft()">Request</md-button>
 								</md-item-content>
 							</md-item>
 							<md-item>
 								<md-item-content>
-									<md-button ui-sref="menu.help">Help</md-button>
+									<md-button ui-sref="menu.help" ng-click="toggleLeft()">Help</md-button>
 								</md-item-content>
 							</md-item>
 							</md-list>
 						</p>
-						<md-button ng-click="close()" class="md-primary" hide-gt-md>
-							Close Feature Menu
-						</md-button>
 					</md-content>
 				</md-sidenav>
 				<div layout="column" layout-fill>
-					<md-content ui-view="menuContent" class="md-padding" flex>
-						<md-button ng-click="toggleLeft()"
-									  class="md-primary" hide-gt-md>
-							Toggle left
-						</md-button>
+					<md-content class="md-padding">
+                        <div ui-view="menuContent"></div>
 					</md-content>
 				</div>
 			</section>
 		</div>
 	</md-content>
-</div>
 </div>

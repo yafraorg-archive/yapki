@@ -73,5 +73,5 @@ PkiApp.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider,
         });
 
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/pki/home');
+    $urlRouterProvider.otherwise('/pki/db');
 }]);

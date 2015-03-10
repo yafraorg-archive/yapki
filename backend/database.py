@@ -29,7 +29,9 @@ class Database:
     def __init__(self):
         self.description = "This shape has not been described yet"
         self.author = "Nobody has claimed to make this shape yet"
-    def list(self):
-        file = open('/data/pki/yapki/index.txt', 'r')
+        print(self.author)
+    def list(self, filename):
+        file = open(filename, 'r')
         index = file.read()
+        file.close()
         return index

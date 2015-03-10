@@ -24,6 +24,7 @@ var PkiController = angular.module('yapki.controllers', []);
  */
 PkiController.controller('DefaultCtrl', ['$scope', '$mdSidenav', 'SysMsg', function ($scope, $mdSidenav, SysMsg) {
 	'use strict';
+    SysMsg.debug("start DefaultCtrl");
   $scope.toggleLeft = function() {
     $mdSidenav('left').toggle()
                       .then(function(){
@@ -44,6 +45,7 @@ PkiController.controller('DefaultCtrl', ['$scope', '$mdSidenav', 'SysMsg', funct
  */
 PkiController.controller('DbCtrl', ['$scope', '$mdSidenav', 'SysMsg', function ($scope, $mdSidenav, SysMsg) {
 	'use strict';
+    SysMsg.debug("start DbCtrl");
 
 }]);
 

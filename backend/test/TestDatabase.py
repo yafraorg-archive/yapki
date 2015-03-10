@@ -24,17 +24,16 @@
 # python test unit
 __author__ = 'mwn'
 
-from ..pkimgmt import database
-
 import unittest
+import database
 
 class TestDatabase(unittest.TestCase):
     def setUp(self):
         self.db = database.Database()
 
     def testList(self):
-        x = self.db.list()
-        print( "Output " % (x))
+        x = self.db.list('TestDatabase.py')
+        self.assertIn("Eve", x)
 
 if __name__ == '__main__':
     unittest.main()
