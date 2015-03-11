@@ -67,5 +67,7 @@ echo "setup server rest python"
 cp $YAPKI/backend/* $PKISERVER
 cd $PKISERVER
 pip install -r requirements.txt
+pip3 install -r requirements.txt
+python3 run.py &
 
 echo "done - running now YAPKI under nginx/perl/python with admin scripts under /usr/local/bin"
