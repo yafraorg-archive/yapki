@@ -5,13 +5,9 @@ var changelog = require('conventional-changelog');
 var fs = require('fs');
 var glob = require('glob').sync;
 var gulp = require('gulp');
-var karma = require('karma').server;
-var lazypipe = require('lazypipe');
-var mergeStream = require('merge-stream');
 var path = require('path');
 var pkg = require('./package.json');
 var series = require('stream-series');
-var through2 = require('through2');
 
 /** Gulp dependencies */
 var autoprefixer = require('gulp-autoprefixer');
@@ -44,72 +40,38 @@ var SHA = argv.sha;
 var config = {
   banner:
     '/*!\n' +
-    ' * Angular Material Design\n' +
-    ' * https://github.com/angular/material\n' +
-    ' * @license MIT\n' +
+    ' * Yafra - YAPKI tool\n' +
+    ' * https://github.com/yafraorg/yafra\n' +
+    ' * @license Apache\n' +
     ' * v' + VERSION + '\n' +
     ' */\n',
   jsBaseFiles: [
-    'src/core/**/*.js',
-    '!src/core/**/*.spec.js'
+    'app/js/**/*.js',
+    '!app/js/**/*.spec.js'
   ],
   jsFiles: [
-    'src/**/*.js'
+    'app/js/**/*.js'
   ],
   themeBaseFiles: [
-    'src/core/style/variables.scss',
-    'src/core/style/mixins.scss'
+    'app/assets/app.scss'
   ],
   scssBaseFiles: [
-    'src/core/style/color-palette.scss',
-    'src/core/style/variables.scss',
-    'src/core/style/mixins.scss',
-    'src/core/style/structure.scss',
-    'src/core/style/layout.scss'
+    'app/assets/color-palette.scss'
   ],
   scssStandaloneFiles: [
-    'src/core/style/layout.scss'
+    'app/assets/layout.scss'
   ],
-  paths: 'src/{components,services}/**',
+  paths: 'app/{components,services}/**',
   outputDir: 'dist/'
 };
 
 var LR_PORT = argv.port || argv.p || 8080;
 
-var buildModes = {
-  'closure': {
-    transform: utils.addClosurePrefixes,
-    outputDir: path.join(config.outputDir, 'modules/closure') + path.sep,
-    useBower: false
-  },
-  'demos': {
-    transform: gutil.noop,
-    outputDir: path.join(config.outputDir, 'demos') + path.sep,
-    useBower: false
-  },
-  'default': {
-    transform: gutil.noop,
-    outputDir: path.join(config.outputDir, 'modules/js') + path.sep,
-    useBower: true
-  }
-};
-
-IS_DEMO_BUILD && (BUILD_MODE="demos");
-BUILD_MODE = buildModes[BUILD_MODE] || buildModes['default'];
-
-
-if (IS_RELEASE_BUILD) {
-  console.log(
-    gutil.colors.red('--release:'),
-    'Building release version (minified)...'
-  );
-}
-
-require('./docs/gulpfile')(gulp, IS_RELEASE_BUILD);
+//require('../docs/gulpfile')(gulp, IS_RELEASE_BUILD);
 
 
 
-gulp.task('default', ['build']);
+gulp.task('default', ['validate', 'changelog']);
 gulp.task('validate', ['jshint', 'karma']);
 gulp.task('changelog', function(done) {
   var options = {
@@ -145,12 +107,14 @@ gulp.task('jshint', function() {
  *
  ** ***************************************** */
 
+var karma = require('karma').server;
+
 gulp.task('karma', function(done) {
   var karmaConfig = {
     singleRun: true,
     autoWatch: false,
     browsers : argv.browsers ? argv.browsers.trim().split(',') : ['Chrome'],
-    configFile: __dirname + '/config/karma.conf.js'
+    configFile: __dirname + '/karma.conf.js'
   };
 
   gutil.log('Running unit tests on unminified source.');
@@ -168,12 +132,33 @@ gulp.task('karma-watch', function(done) {
   karma.start({
     singleRun:false,
     autoWatch:true,
-    configFile: __dirname + '/config/karma.conf.js',
-    browsers : argv.browsers ? argv.browsers.trim().split(',') : ['Chrome'],
+    configFile: __dirname + '/karma.conf.js',
+    browsers : argv.browsers ? argv.browsers.trim().split(',') : ['Chrome']
   },done);
 });
 
-gulp.task('karma-sauce', function(done) {
-  karma.start(require('./config/karma-sauce.conf.js'), done);
-});
+var protractor = require("gulp-protractor").protractor;
 
+// Start a standalone server
+var webdriver_standalone = require('gulp-protractor').webdriver_standalone;
+
+// Download and update the selenium driver
+var webdriver_update = require('gulp-protractor').webdriver_update;
+
+// Downloads the selenium webdriver
+gulp.task('webdriver_update', webdriver_update);
+
+// Start the standalone selenium server
+// NOTE: This is not needed if you reference the
+// seleniumServerJar in your protractor.conf.js
+gulp.task('webdriver_standalone', webdriver_standalone);
+
+
+// Setting up the test task
+gulp.task('protractor', ['webdriver_update'], function(cb) {
+gulp.src(["./e2e-tests/scenarios.js"])
+    .pipe(protractor({
+        configFile: "e2e-tests/protractor.conf.js"}))
+    .on('error', function(e) { console.log(e)
+    }).on('end', cb);
+});

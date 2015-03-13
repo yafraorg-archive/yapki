@@ -23,7 +23,8 @@
 # python eve run.py
 
 import os
-from eve import Eve
+#from eve import Eve
+from flask import Flask
 from flask import jsonify
 from database import Database
 
@@ -37,7 +38,8 @@ else:
     port = 8080
     host = '0.0.0.0'
 
-app = Eve()
+#app = Eve()
+app = Flask("yapki")
 
 @app.route("/ssl")
 def SslPage():

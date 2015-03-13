@@ -39,7 +39,7 @@ test -d $PKINODE || mkdir -p $PKINODE
 export PKISERVER=/work/pkiserver
 test -d $PKISERVER || mkdir -p $PKISERVER
 
-echo "setup client"
+echo "setup client - copy files to standard www directory"
 cd $YAPKI
 cd www
 npm update
@@ -58,7 +58,7 @@ cd $YAPKI/pki
 cp * $PKINODE
 echo "WARNING: if not done already - create as first action CA.pl -newca!"
 
-echo "setup server cgi perl"
+echo "setup apache server with cgi perl"
 cd $YAPKI
 cp cgi/*.pl /usr/lib/cgi-bin/
 sudo service apache2 start
