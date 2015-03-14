@@ -34,3 +34,18 @@ PkiRestServices.factory('ServerInfo', ['$resource', 'pkiserver', function ($reso
 	});
 }]);
 
+
+/**
+ * Query Program/Events per section
+ * Query an event detail
+ */
+PkiRestServices.factory('Database', ['$resource', 'pkiserver', function ($resource, pkiserver) {
+	'use strict';
+	return $resource((pkiserver + '/db/'), null, {
+		query: {
+			method: 'GET',
+			isArray: true,
+			headers: {'Accept': 'application/json', 'Content-Type': 'application/json'}
+		}
+	});
+}]);

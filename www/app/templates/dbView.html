@@ -9,7 +9,14 @@
   </md-toolbar>
 -->
   <md-content class="md-padding">
-            PKI Database Items
-
+	<md-list>
+	  <md-item ng-repeat="item in data.db">
+		 <md-item-content>
+			<div class="md-tile-content">
+			  <h3>{{item.certname}}</h3>
+			</div>
+		 </md-item-content>
+	  </md-item>
+	</md-list>
   </md-content>
 </div>

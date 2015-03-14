@@ -43,9 +43,19 @@ PkiController.controller('DefaultCtrl', ['$scope', '$mdSidenav', 'SysMsg', funct
 /**
  * Certificate Database controller
  */
-PkiController.controller('DbCtrl', ['$scope', '$mdSidenav', 'SysMsg', function ($scope, $mdSidenav, SysMsg) {
+PkiController.controller('DbCtrl', ['$scope', '$mdSidenav', 'SysMsg', 'Database', function ($scope, $mdSidenav, SysMsg, Database) {
 	'use strict';
     SysMsg.debug("start DbCtrl");
+
+	// get server info
+	Database.query(
+		function (response) {
+			$scope.data.db = response;
+		},
+		function (error) {
+			SysMsg.showAlertAndLog('no network access to server', 'DbCtrl', JSON.stringify(error));
+		}
+	);
 
 }]);
 
@@ -60,14 +70,29 @@ PkiController.controller('ReqCtrl', ['$scope', '$mdSidenav', 'SysMsg', function 
 /**
  * HELP controller.
  */
-PkiController.controller('HelpCtrl', ['$scope', 'appversion', 'SysMsg', 'pkihelp', function ($scope, appversion, SysMsg, pkihelp) {
+PkiController.controller('HelpCtrl', ['$scope', 'appversion', 'SysMsg', 'pkihelp', 'ServerInfo', function ($scope, appversion, SysMsg, pkihelp, ServerInfo) {
 	// Help controller, giving some about infos
 	'use strict';
 	$scope.version = appversion;
 	$scope.device = SysMsg.device();
 	$scope.url = pkihelp;
+	$scope.data = {};
+
 	SysMsg.debug("help web page is: " + $scope.url);
+
 	$scope.closeBrowser = function () {
 		SysMsg.debug('Closed browser');
 	};
+
+	// get server info
+	ServerInfo.get(
+		function (response) {
+			$scope.data.serverinfo = response;
+		},
+		function (error) {
+			SysMsg.showAlertAndLog('no network access to server', 'HelpCtrl', JSON.stringify(error));
+		}
+	);
+
+
 }]);

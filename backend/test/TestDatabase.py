@@ -32,7 +32,7 @@ class TestDatabase(unittest.TestCase):
         self.db = database.Database()
 
     def testList(self):
-        x = self.db.list('TestDatabase.py')
+        x = self.db.list('requirements.txt')
         self.assertIn("Eve", x)
 
 if __name__ == '__main__':

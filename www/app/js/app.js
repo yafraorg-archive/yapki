@@ -40,8 +40,8 @@ PkiApp.constant('appdebug', true);
 
 // Server URL
 //PkiApp.constant('pkiserver', 'http://pki.yafra.org:8080/');
-//PkiApp.constant('pkiserver', 'http://pki.yafra.org:8080/');
-PkiApp.constant('pkiserver', 'http://192.168.9.10:8080/');
+PkiApp.constant('pkiserver', 'http://localhost:8080');
+//PkiApp.constant('pkiserver', 'http://192.168.9.10:8080/');
 
 PkiApp.constant('pkihelp', 'http://pki.yafra.org/');
 

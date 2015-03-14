@@ -30,33 +30,32 @@ from database import Database
 
 # Heroku support: bind to PORT if defined, otherwise default to 5000.
 if 'PORT' in os.environ:
-    port = int(os.environ.get('PORT'))
-    # use '0.0.0.0' to ensure your REST API is reachable from all your
-    # network (and not only your computer).
-    host = '0.0.0.0'
+	port = int(os.environ.get('PORT'))
+	# use '0.0.0.0' to ensure your REST API is reachable from all your
+	# network (and not only your computer).
+	host = '0.0.0.0'
 else:
-    port = 8080
-    host = '0.0.0.0'
+	port = 8080
+	host = '0.0.0.0'
 
 #app = Eve()
 app = Flask("yapki")
 
-@app.route("/ssl")
-def SslPage():
-    myDb = Database()
-    return jsonify(username='martin',
-                       email='www@gmail.com',
-                       id='test111')
+@app.route("/db")
+def DbPage():
+	myDb = Database()
+	indexContent = myDb.list("/data/pki/yapki/index.txt")
+	return jsonify(indexContent)
 
 @app.route("/info")
 def InfoPage():
-    return jsonify(version='1.0.1',
+	return jsonify(version='1.0.1',
                    status='OK')
 
 @app.after_request
 def after_request(response):
-    response.headers.add('X-Test', 'This is only test.')
-    return response
+	response.headers.add('X-Test', 'This is only test.')
+	return response
 
 if __name__ == '__main__':
-    app.run(host=host, port=port)
+	app.run(host=host, port=port)

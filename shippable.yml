@@ -1,0 +1,55 @@
+language: node_js
+
+node_js:
+  - "0.10"
+
+language: python
+
+# version numbers
+python:
+   - "2.7"
+#   - "3.3"
+
+addons:
+   firefox: "21.0"
+
+install:
+  - cd backend
+  - pip install -r requirements.txt --use-mirrors
+  - cd ../www
+  - npm install
+  - bower install
+#  - npm run update-webdriver
+#  - node_modules/.bin/webdriver-manager update
+  - sleep 1 # give server time to start
+  - cd ..
+
+before_script:
+  - pwd
+  - mkdir -p shippable/testresults
+  - mkdir -p shippable/codecoverage
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+  #- npm start > /dev/null &
+  - www/node_modules/.bin/http-server -p 8081 www/app/ &
+  - sleep 1
+
+script:
+#  - node_modules/.bin/karma start karma.conf.js --no-auto-watch --single-run --reporters=dots --browsers=Firefox
+#  - node_modules/.bin/protractor e2e-tests/protractor.conf.js --browser=firefox
+  - pwd
+  - cd www
+  - node_modules/.bin/gulp karma
+  - node_modules/.bin/gulp protractor
+  - node_modules/.bin/gulp jshint
+  - node_modules/.bin/gulp changelog
+  - cd ../backend
+  - coverage run -m unittest test/TestDatabase.py
+  - coverage xml -o shippable/codecoverage/coverage.xml python/sample.py
+  - cd ..
+  - sudo ./build-shippable.sh
+
+after_success:
+  - pwd
+  - echo $BUILD_NUMBER
+  - sudo tar cvf /work/yafra-python-build.tar .

@@ -27,8 +27,8 @@ __author__ = 'mwn'
 #An example of a class
 class Database:
     def __init__(self):
-        self.description = "This shape has not been described yet"
-        self.author = "Nobody has claimed to make this shape yet"
+        self.description = "YAPKI - openssl index database"
+        self.author = "yafra.org - Martin Weber"
         print(self.author)
     def list(self, filename):
         file = open(filename, 'r')

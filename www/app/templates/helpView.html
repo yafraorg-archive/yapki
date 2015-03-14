@@ -9,6 +9,14 @@
   </md-toolbar>
 -->
   <md-content class="md-padding">
-            Help
+		<md-card>
+			<h2>Server Information</h2>
+			<p>
+			Server Version: {{ data.serverinfo.version }}
+			</p>
+			<p>
+			Server Status: {{ data.serverinfo.status }}
+			</p>
+		</md-card>
   </md-content>
 </div>
