@@ -28,6 +28,7 @@ before_script:
   - pwd
   - mkdir -p shippable/testresults
   - mkdir -p shippable/codecoverage
+  - mkdir -p shippable/screenshots
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
   #- npm start > /dev/null &
@@ -43,9 +44,12 @@ script:
   - node_modules/.bin/gulp protractor
   - node_modules/.bin/gulp jshint
   - node_modules/.bin/gulp changelog
+  - node_modules/.bin/istanbul report cobertura --dir ../shippable/codecoverage/
   - cd ../backend
-  - coverage run -m unittest test/TestDatabase.py
-  - coverage xml -o shippable/codecoverage/coverage.xml python/sample.py
+  - export PYTHONPATH=$PYTHONPATH:.
+#  - coverage run -m unittest test/TestDatabase.py
+  - nosetests test/TestDatabase.py --with-xunit --xunit-file=../shippable/testresults/nosetests.xml
+  - coverage xml -o ../shippable/codecoverage/coverage.xml
   - cd ..
   - sudo ./build-shippable.sh
 

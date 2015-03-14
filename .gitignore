@@ -56,3 +56,4 @@ target/
 .idea/
 
 www/coverage
+shippable

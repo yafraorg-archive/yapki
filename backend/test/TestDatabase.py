@@ -25,11 +25,11 @@
 __author__ = 'mwn'
 
 import unittest
-import database
+from database import Database
 
 class TestDatabase(unittest.TestCase):
     def setUp(self):
-        self.db = database.Database()
+        self.db = Database()
 
     def testList(self):
         x = self.db.list('requirements.txt')

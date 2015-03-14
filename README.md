@@ -13,3 +13,10 @@ It contains a guide, some scripts and configs in order to run a PKI mainly on UN
 * Sign the generated cert requests by the CA
 * Run gensshcert.sh to generate a SSH certificate like for Putty or openssh
 * Run gencrl.sh to generate a CRL lits to be published
+
+
+## Version settings
+Version string is set in:
+* www/js/app.js
+* backend/run.py
+

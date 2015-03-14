@@ -30,12 +30,12 @@ module.exports = function(config){
             ],
 
     junitReporter : {
-      outputFile: 'test_out/unit.xml',
+      outputFile: '../shippable/testresults/karmatests.xml',
       suite: 'unit'
     },
 
     singleRun: true,
-    reporters: ['progress', 'coverage'],
+    reporters: ['progress', 'coverage', 'junit'],
     preprocessors: { '*.js': ['coverage'] }
   });
 };
