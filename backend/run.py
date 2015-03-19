@@ -55,6 +55,7 @@ def InfoPage():
 @app.after_request
 def after_request(response):
 	response.headers.add('X-Test', 'This is only test.')
+	response.headers.add('Access-Control-Allow-Origin', '*') # TODO: set to real origin
 	return response
 
 if __name__ == '__main__':
