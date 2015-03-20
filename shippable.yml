@@ -13,6 +13,10 @@ python:
 addons:
    firefox: "21.0"
 
+# environment variable
+env:
+ - CHROME_BIN=/usr/bin/chrome
+
 install:
   - cd backend
   - pip install -r requirements.txt --use-mirrors
