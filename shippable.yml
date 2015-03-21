@@ -49,15 +49,15 @@ script:
   - node_modules/.bin/gulp jshint
   - node_modules/.bin/gulp changelog
   - node_modules/.bin/istanbul report cobertura --dir ../shippable/codecoverage/
-  #- cd ../backend
-  #- export PYTHONPATH=$PYTHONPATH:.
+  - cd ../backend
+  - export PYTHONPATH=$PYTHONPATH:.
 #  - coverage run -m unittest test/TestDatabase.py
-  #- nosetests test/TestDatabase.py --with-xunit --xunit-file=../shippable/testresults/nosetests.xml
+  - nosetests test/TestDatabase.py --with-xunit --xunit-file=../shippable/testresults/nosetests.xml
   #- coverage xml -o ../shippable/codecoverage/coverage.xml
-  #- cd ..
+  - cd ..
   #- sudo ./build-shippable.sh
 
 after_success:
   - pwd
   - echo $BUILD_NUMBER
-  - sudo tar cvf /work/yafra-python-build.tar .
+  - sudo tar cvf yafra-python-build.tar .
