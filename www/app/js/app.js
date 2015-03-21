@@ -23,6 +23,7 @@
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
 // Declare app level module which depends on filters, and services
+'use strict';
 var PkiApp = angular.module('yapkiApp', [
     'ui.router',
     'ngResource',
@@ -47,7 +48,6 @@ PkiApp.constant('pkihelp', 'http://pki.yafra.org/');
 
 
 PkiApp.run(['SysMsg', function (SysMsg) {
-    'use strict';
     SysMsg.debug("run() - runs on Browser");
 }]);
 
@@ -55,7 +55,6 @@ PkiApp.run(['SysMsg', function (SysMsg) {
  * Routing table including associated controllers.
  */
 PkiApp.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
-    'use strict';
 
     $stateProvider
         .state('menu', {url: "/pki", abstract: true, templateUrl: "templates/main.html", controller: 'DefaultCtrl'})

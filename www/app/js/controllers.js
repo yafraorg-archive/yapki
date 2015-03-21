@@ -16,6 +16,8 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+
+'use strict';
 var PkiController = angular.module('yapki.controllers', []);
 
 
@@ -23,8 +25,7 @@ var PkiController = angular.module('yapki.controllers', []);
  * Default controller
  */
 PkiController.controller('DefaultCtrl', ['$scope', '$mdSidenav', 'SysMsg', function ($scope, $mdSidenav, SysMsg) {
-	'use strict';
-    SysMsg.debug("start DefaultCtrl");
+  SysMsg.debug("start DefaultCtrl");
   $scope.toggleLeft = function() {
     $mdSidenav('left').toggle()
                       .then(function(){
@@ -44,7 +45,6 @@ PkiController.controller('DefaultCtrl', ['$scope', '$mdSidenav', 'SysMsg', funct
  * Certificate Database controller
  */
 PkiController.controller('DbCtrl', ['$scope', '$mdSidenav', 'SysMsg', 'Database', function ($scope, $mdSidenav, SysMsg, Database) {
-	'use strict';
     SysMsg.debug("start DbCtrl");
 
 	// get server info
@@ -63,7 +63,6 @@ PkiController.controller('DbCtrl', ['$scope', '$mdSidenav', 'SysMsg', 'Database'
  * Certificate Request controller
  */
 PkiController.controller('ReqCtrl', ['$scope', '$mdSidenav', 'SysMsg', function ($scope, $mdSidenav, SysMsg) {
-	'use strict';
 }]);
 
 
@@ -72,7 +71,6 @@ PkiController.controller('ReqCtrl', ['$scope', '$mdSidenav', 'SysMsg', function 
  */
 PkiController.controller('HelpCtrl', ['$scope', 'appversion', 'SysMsg', 'pkihelp', 'ServerInfo', function ($scope, appversion, SysMsg, pkihelp, ServerInfo) {
 	// Help controller, giving some about infos
-	'use strict';
 	$scope.version = appversion;
 	$scope.device = SysMsg.device();
 	$scope.url = pkihelp;

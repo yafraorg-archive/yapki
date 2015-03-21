@@ -16,6 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+'use strict';
 var PkiFilters = angular.module('yapki.filters', []);
 
 /**
@@ -43,9 +44,8 @@ var PkiFilters = angular.module('yapki.filters', []);
  </example>
  */
 PkiFilters.filter('parseUrl', function() {
-	'use strict';
-	var urls = /(\b(https?|ftp):\/\/[A-Z0-9+&@#\/%?=~_|!:,.;-]*[-A-Z0-9+&@#\/%=~_|])/gim
-	var emails = /(\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,6})/gim
+	var urls = /(\b(https?|ftp):\/\/[A-Z0-9+&@#\/%?=~_|!:,.;-]*[-A-Z0-9+&@#\/%=~_|])/gim;
+	var emails = /(\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,6})/gim;
 
 	return function (text) {
 		if (text.match(urls)) {
@@ -83,7 +83,6 @@ PkiFilters.filter('parseUrl', function() {
  </example>
  */
 PkiFilters.filter('trustHtml', ['$sce', function($sce){
-	'use strict';
 	return function(text) {
 		return $sce.trustAsHtml(text);
 	};
@@ -91,7 +90,6 @@ PkiFilters.filter('trustHtml', ['$sce', function($sce){
 
 // formats a number as a latitude (e.g. 40.46... => "40°27'44"N")
 PkiFilters.filter('lat', function () {
-	'use strict';
 	return function (input, decimals) {
 		if (!decimals) {decimals = 0;}
 		input = input * 1;
@@ -106,7 +104,6 @@ PkiFilters.filter('lat', function () {
 
 // formats a number as a longitude (e.g. -80.02... => "80°1'24"W")
 PkiFilters.filter('lon', function () {
-	'use strict';
 	return function (input, decimals) {
 		if (!decimals) {decimals = 0;}
 		input = input * 1;

@@ -2,6 +2,8 @@
   "globalstrict": true,
   "globals": {
     "angular": false,
+    "console": false,
+    "navigator": false,
     "describe": false,
     "it": false,
     "expect": false,

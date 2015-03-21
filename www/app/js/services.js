@@ -16,13 +16,13 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+'use strict';
 var PkiService = angular.module('yapki.services', []);
 
 /**
  * Handle system / error messages through dialogs (native or javascript)
  */
 PkiService.factory("SysMsg", ['appdebug', function (appdebug) {
-	'use strict';
 	return {
 		showAlert: function (message, title, buttonName) {
 			if (appdebug)

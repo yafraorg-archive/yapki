@@ -16,13 +16,13 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+'use strict';
 var PkiDirectives = angular.module('yapki.directives', []);
 
 /**
  * Handle external URLs
  */
 PkiDirectives.directive("openExternal", ['$window', function ($window) {
-	'use strict';
 
 	return {
 		restrict: 'E',

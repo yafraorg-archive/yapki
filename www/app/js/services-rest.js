@@ -16,6 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+'use strict';
 var PkiRestServices = angular.module('yapki.services-rest', []);
 
 /* ----------------------------------- Login / Userdevice services ------------------------*/
@@ -24,7 +25,6 @@ var PkiRestServices = angular.module('yapki.services-rest', []);
  * send unprotected registration of oauth apikey and email using the registered email
  */
 PkiRestServices.factory('ServerInfo', ['$resource', 'pkiserver', function ($resource, pkiserver) {
-	'use strict';
 	return $resource((pkiserver + '/info'), null, {
 		get: {
 			method: 'GET',
@@ -40,7 +40,6 @@ PkiRestServices.factory('ServerInfo', ['$resource', 'pkiserver', function ($reso
  * Query an event detail
  */
 PkiRestServices.factory('Database', ['$resource', 'pkiserver', function ($resource, pkiserver) {
-	'use strict';
 	return $resource((pkiserver + '/db/'), null, {
 		query: {
 			method: 'GET',
