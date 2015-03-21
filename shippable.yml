@@ -55,7 +55,7 @@ script:
   - nosetests test/TestDatabase.py --with-xunit --xunit-file=../shippable/testresults/nosetests.xml
   - coverage xml -o ../shippable/codecoverage/coverage.xml
   - cd ..
-  - sudo ./build-shippable.sh
+  #- sudo ./build-shippable.sh
 
 after_success:
   - pwd
