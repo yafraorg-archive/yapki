@@ -113,7 +113,7 @@ gulp.task('karma', function(done) {
   var karmaConfig = {
     singleRun: true,
     autoWatch: false,
-    browsers : argv.browsers ? argv.browsers.trim().split(',') : ['Chrome'],
+    //browsers : argv.browsers ? argv.browsers.trim().split(',') : ['Chrome'],
     configFile: __dirname + '/karma.conf.js'
   };
 
