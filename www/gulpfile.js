@@ -133,7 +133,7 @@ gulp.task('karma-watch', function(done) {
     singleRun:false,
     autoWatch:true,
     configFile: __dirname + '/karma.conf.js',
-    browsers : argv.browsers ? argv.browsers.trim().split(',') : ['Chrome']
+    //browsers : argv.browsers ? argv.browsers.trim().split(',') : ['Chrome']
   },done);
 });
 
