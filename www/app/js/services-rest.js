@@ -40,7 +40,7 @@ PkiRestServices.factory('ServerInfo', ['$resource', 'GlobalYapki', function ($re
  * Query an event detail
  */
 PkiRestServices.factory('Database', ['$resource', 'GlobalYapki', function ($resource, GlobalYapki) {
-	return $resource((GlobalYapki.getServer() + '/db/'), null, {
+	return $resource((GlobalYapki.getServer() + '/db'), null, {
 		query: {
 			method: 'GET',
 			isArray: true,

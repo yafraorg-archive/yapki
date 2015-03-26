@@ -28,6 +28,9 @@ import os
 from flask import Flask
 from flask import jsonify
 from database import Database
+import logging
+from logging.handlers import RotatingFileHandler
+
 
 # Heroku support: bind to PORT if defined, otherwise default to 5000.
 if 'PORT' in os.environ:
@@ -44,9 +47,11 @@ app = Flask("yapki")
 
 @app.route("/db")
 def DbPage():
+	app.logger.info('start db list get')
 	myDb = Database()
 	indexContent = myDb.list("/data/pki/yapki/index.txt")
-	return jsonify(indexContent)
+	app.logger.debug(indexContent)
+	return indexContent
 
 @app.route("/info")
 def InfoPage():
@@ -60,4 +65,7 @@ def after_request(response):
 	return response
 
 if __name__ == '__main__':
-	app.run(host=host, port=port)
+	handler = RotatingFileHandler('yapki.log', maxBytes=10000, backupCount=1)
+	handler.setLevel(logging.INFO)
+	app.logger.addHandler(handler)
+	app.run(host=host, port=port, debug=True)
