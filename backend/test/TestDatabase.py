@@ -24,6 +24,9 @@
 # python test unit
 __author__ = 'mwn'
 
+import imp
+database = imp.load_source('database', 'database.py')
+
 import unittest
 from database import Database
 
@@ -32,8 +35,8 @@ class TestDatabase(unittest.TestCase):
         self.db = Database()
 
     def testList(self):
-        x = self.db.list('requirements.txt')
-        self.assertIn("Eve", x)
+        x = self.db.certlist('requirements.txt')
+        self.assertIn("Flask==0.10", x)
 
 if __name__ == '__main__':
     unittest.main()

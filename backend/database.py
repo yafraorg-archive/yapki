@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-#-------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------
 # Licensed to the Apache Software Foundation (ASF) under one
 # or more contributor license agreements.  See the NOTICE file
 # distributed with this work for additional information
@@ -36,10 +36,14 @@ class Database:
         self.description = "YAPKI - openssl index database"
         self.author = "yafra.org - Martin Weber"
         print(self.author)
-    def list(self, filename):
+
+    def certlist(self, filename):
         certs = []
+        certEntry = {}
         with open(filename, 'r') as infile:
             for line in infile:
                 certFields = line.split('\t')
-                certs.append(certFields)
+                certEntry = {'type': certFields[0], 'expdate': certFields[1], 'revdate': certFields[2],
+                             'serial': certFields[3], 'file': certFields[4], 'name': certFields[5]}
+                certs.append(certEntry)
         return certs

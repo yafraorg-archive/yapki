@@ -24,6 +24,9 @@
 # python eve run.py
 
 import os
+import imp
+database = imp.load_source('database', 'database.py')
+import json
 #from eve import Eve
 from flask import Flask
 from flask import jsonify
@@ -49,9 +52,9 @@ app = Flask("yapki")
 def DbPage():
 	app.logger.info('start db list get')
 	myDb = Database()
-	indexContent = myDb.list("/data/pki/yapki/index.txt")
+	indexContent = myDb.certlist("/data/pki/yapki/index.txt")
 	app.logger.debug(indexContent)
-	return indexContent
+	return json.dump(indexContent)
 
 @app.route("/info")
 def InfoPage():
