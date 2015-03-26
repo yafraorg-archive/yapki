@@ -68,3 +68,28 @@ PkiService.factory("SysMsg", ['appdebug', function (appdebug) {
 	};
 }]);
 
+
+/**
+ * Handle system / error messages through dialogs (native or javascript)
+ */
+PkiService.factory("GlobalYapki", ['SysMsg', 'pkiserver', function (SysMsg, pkiserver) {
+    var pkiServerSet = false;
+    var pkiServer = pkiserver;
+	return {
+		isServerSet: function () {
+			if (yapkiServerSet)
+            {
+                return true;
+            }
+            return false;
+		},
+		setServer: function (hostname) {
+            pkiServer = hostname;
+            pkiServerSet = true;
+		},
+		getServer: function () {
+            return(pkiServer);
+		}
+	};
+}]);
+

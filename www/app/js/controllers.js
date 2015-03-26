@@ -65,6 +65,20 @@ PkiController.controller('DbCtrl', ['$scope', '$mdSidenav', 'SysMsg', 'Database'
 PkiController.controller('ReqCtrl', ['$scope', '$mdSidenav', 'SysMsg', function ($scope, $mdSidenav, SysMsg) {
 }]);
 
+/**
+ * Login controller
+ */
+PkiController.controller('LoginCtrl', ['$scope', 'GlobalYapki', 'SysMsg', function ($scope, GlobalYapki, SysMsg) {
+    SysMsg.debug("start LoginCtrl");
+    $scope.hostname = "localhost";
+
+	$scope.setHost = function () {
+		SysMsg.debug('Set pki server hostname to: ', $scope.hostname);
+        GlobalYapki.setServer($scope.hostname);
+        SysMsg.debug("new hostname set");
+	};
+
+}]);
 
 /**
  * HELP controller.

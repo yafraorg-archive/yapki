@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #-------------------------------------------------------------------------------
 # Licensed to the Apache Software Foundation (ASF) under one
 # or more contributor license agreements.  See the NOTICE file
@@ -99,7 +100,7 @@ people = {
     }
 }
 
-works = {
+certs = {
     # if 'item_title' is not provided Eve will just strip the final
     # 's' from resource name, and use it as the item_title.
     #'item_title': 'work',
@@ -136,5 +137,5 @@ works = {
 # be accessible to the API consumer.
 DOMAIN = {
     'people': people,
-    'works': works,
+    'certs': certs,
 }

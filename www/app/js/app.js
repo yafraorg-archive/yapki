@@ -66,6 +66,10 @@ PkiApp.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider,
             url: '/db',
             views: {'menuContent': {templateUrl: 'templates/dbView.html', controller: 'DbCtrl'}}
         })
+        .state('menu.login', {
+            url: '/login',
+            views: {'menuContent': {templateUrl: 'templates/loginView.html', controller: 'LoginCtrl'}}
+        })
         .state('menu.help', {
             url: '/help',
             views: {'menuContent': {templateUrl: 'templates/helpView.html', controller: 'HelpCtrl'}}

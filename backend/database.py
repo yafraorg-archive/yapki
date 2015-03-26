@@ -1,4 +1,5 @@
 #!/usr/bin/python
+# -*- coding: utf-8 -*-
 #-------------------------------------------------------------------------------
 # Licensed to the Apache Software Foundation (ASF) under one
 # or more contributor license agreements.  See the NOTICE file
@@ -21,7 +22,12 @@
 #
 #-------------------------------------------------------------------------------
 #
-# python eve run.py
+# python ssl/tls database module
+#
+# the structure of the index.txt openssl file is somehow defined here
+# https://github.com/openssl/openssl/blob/master/apps/apps.h
+# search for DB_type define
+#
 __author__ = 'mwn'
 
 #An example of a class
@@ -31,7 +37,9 @@ class Database:
         self.author = "yafra.org - Martin Weber"
         print(self.author)
     def list(self, filename):
-        file = open(filename, 'r')
-        index = file.read()
-        file.close()
-        return index
+        certs = []
+        with open(filename, 'r') as infile:
+            for line in infile:
+                certFields = line.split('\t')
+                certs.append(certFields)
+        return certs

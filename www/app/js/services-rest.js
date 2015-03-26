@@ -24,8 +24,8 @@ var PkiRestServices = angular.module('yapki.services-rest', []);
  * Login / Registration
  * send unprotected registration of oauth apikey and email using the registered email
  */
-PkiRestServices.factory('ServerInfo', ['$resource', 'pkiserver', function ($resource, pkiserver) {
-	return $resource((pkiserver + '/info'), null, {
+PkiRestServices.factory('ServerInfo', ['$resource', 'GlobalYapki', function ($resource, GlobalYapki) {
+	return $resource((GlobalYapki.getServer() + '/info'), null, {
 		get: {
 			method: 'GET',
 			isArray: false,
@@ -39,8 +39,8 @@ PkiRestServices.factory('ServerInfo', ['$resource', 'pkiserver', function ($reso
  * Query Program/Events per section
  * Query an event detail
  */
-PkiRestServices.factory('Database', ['$resource', 'pkiserver', function ($resource, pkiserver) {
-	return $resource((pkiserver + '/db/'), null, {
+PkiRestServices.factory('Database', ['$resource', 'GlobalYapki', function ($resource, GlobalYapki) {
+	return $resource((GlobalYapki.getServer() + '/db/'), null, {
 		query: {
 			method: 'GET',
 			isArray: true,
