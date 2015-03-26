@@ -35,8 +35,8 @@ class TestDatabase(unittest.TestCase):
         self.db = Database()
 
     def testList(self):
-        x = self.db.certlist('requirements.txt')
-        self.assertIn("Flask==0.10", x)
+        x = self.db.certlist('test/index.txt')
+        self.assertIsNotNone(x)
 
 if __name__ == '__main__':
     unittest.main()

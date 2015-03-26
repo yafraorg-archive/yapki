@@ -54,7 +54,7 @@ def DbPage():
 	myDb = Database()
 	indexContent = myDb.certlist("/data/pki/yapki/index.txt")
 	app.logger.debug(indexContent)
-	return json.dump(indexContent)
+	return json.dumps(indexContent)
 
 @app.route("/info")
 def InfoPage():
