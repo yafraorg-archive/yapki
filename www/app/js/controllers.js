@@ -44,7 +44,7 @@ PkiController.controller('DefaultCtrl', ['$scope', '$mdSidenav', 'SysMsg', funct
 /**
  * Certificate Database controller
  */
-PkiController.controller('DbCtrl', ['$scope', '$mdSidenav', 'SysMsg', 'Database', function ($scope, $mdSidenav, SysMsg, Database) {
+PkiController.controller('DbCtrl', ['$scope', 'SysMsg', 'Database', function ($scope, SysMsg, Database) {
     SysMsg.debug("start DbCtrl");
 
 	// get server info
