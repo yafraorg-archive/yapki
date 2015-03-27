@@ -70,7 +70,8 @@ PkiController.controller('ReqCtrl', ['$scope', '$mdSidenav', 'SysMsg', function 
  */
 PkiController.controller('LoginCtrl', ['$scope', 'GlobalYapki', 'SysMsg', function ($scope, GlobalYapki, SysMsg) {
     SysMsg.debug("start LoginCtrl");
-    $scope.hostname = "localhost";
+    $scope.hostname = GlobalYapki.getServer();
+    SysMsg.debug("start hostname is: ", $scope.hostname);
 
 	$scope.setHost = function () {
 		SysMsg.debug('Set pki server hostname to: ', $scope.hostname);

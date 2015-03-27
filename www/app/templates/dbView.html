@@ -13,7 +13,8 @@
 	  <md-item ng-repeat="item in data.db">
 		 <md-item-content>
 			<div class="md-tile-content">
-			  <h3>{{item.certname}}</h3>
+			  <h3>{{item.name}}</h3>
+                {{item.type}} expires on {{item.expdate}}
 			</div>
 		 </md-item-content>
 	  </md-item>
