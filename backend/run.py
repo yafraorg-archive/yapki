@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-#-------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------
 # Licensed to the Apache Software Foundation (ASF) under one
 # or more contributor license agreements.  See the NOTICE file
 # distributed with this work for additional information
@@ -25,6 +25,7 @@
 
 import os
 import imp
+
 database = imp.load_source('database', 'database.py')
 import json
 #from eve import Eve
@@ -37,38 +38,44 @@ from logging.handlers import RotatingFileHandler
 
 # Heroku support: bind to PORT if defined, otherwise default to 5000.
 if 'PORT' in os.environ:
-	port = int(os.environ.get('PORT'))
-	# use '0.0.0.0' to ensure your REST API is reachable from all your
-	# network (and not only your computer).
-	host = '0.0.0.0'
+    port = int(os.environ.get('PORT'))
+    # use '0.0.0.0' to ensure your REST API is reachable from all your
+    # network (and not only your computer).
+    host = '0.0.0.0'
 else:
-	port = 8080
-	host = '0.0.0.0'
+    port = 8080
+    host = '0.0.0.0'
 
 #app = Eve()
 app = Flask("yapki")
 
+
 @app.route("/db")
 def DbPage():
-	app.logger.info('start db list get')
-	myDb = Database()
-	indexContent = myDb.certlist("/data/pki/yapki/index.txt")
-	app.logger.debug(indexContent)
-	return json.dumps(indexContent)
+    app.logger.info('start db list get')
+    myDb = Database()
+    indexContent = myDb.certlist("/data/pki/yapki/index.txt")
+    app.logger.debug(indexContent)
+    json_data = json.dumps(indexContent)
+    app.logger.debug(json_data)
+    return jsonify(json_data)
+
 
 @app.route("/info")
 def InfoPage():
-	return jsonify(version='1.0.1',
+    return jsonify(version='1.0.1',
                    status='OK')
+
 
 @app.after_request
 def after_request(response):
-	response.headers.add('X-Test', 'This is only test.')
-	response.headers.add('Access-Control-Allow-Origin', '*') # TODO: set to real origin
-	return response
+    response.headers.add('X-Test', 'This is only test.')
+    response.headers.add('Access-Control-Allow-Origin', '*')  # TODO: set to real origin
+    return response
+
 
 if __name__ == '__main__':
-	handler = RotatingFileHandler('yapki.log', maxBytes=10000, backupCount=1)
-	handler.setLevel(logging.INFO)
-	app.logger.addHandler(handler)
-	app.run(host=host, port=port, debug=True)
+    handler = RotatingFileHandler('yapki.log', maxBytes=10000, backupCount=1)
+    handler.setLevel(logging.INFO)
+    app.logger.addHandler(handler)
+    app.run(host=host, port=port, debug=True)

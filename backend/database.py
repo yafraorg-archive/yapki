@@ -43,7 +43,11 @@ class Database:
         with open(filename, 'r') as infile:
             for line in infile:
                 certFields = line.split('\t')
-                certEntry = {'type': certFields[0], 'expdate': certFields[1], 'revdate': certFields[2],
-                             'serial': certFields[3], 'file': certFields[4], 'name': certFields[5]}
+                certEntry['type'] = certFields[0]
+                certEntry['expdate'] = certFields[1]
+                certEntry['revdate'] = certFields[2]
+                certEntry['serial'] = certFields[3]
+                certEntry['file'] = certFields[4]
+                certEntry['name'] = certFields[5]
                 certs.append(certEntry)
         return certs
