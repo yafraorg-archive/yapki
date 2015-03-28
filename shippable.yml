@@ -51,9 +51,8 @@ script:
   - node_modules/.bin/istanbul report cobertura --dir ../shippable/codecoverage/
   - cd ../backend
   - export PYTHONPATH=$PYTHONPATH:.
-#  - coverage run -m unittest test/TestDatabase.py
-  - nosetests test/TestDatabase.py --with-xunit --xunit-file=../shippable/testresults/nosetests.xml
-  #- coverage xml -o ../shippable/codecoverage/coverage.xml
+  #- nosetests tests/TestDatabase.py --with-xunit --xunit-file=../shippable/testresults/nosetests.xml
+  - nosetests tests/TestDatabase.py --with-xunit --xunit-file=../shippable/testresults/nosetests.xml --with-coverage --cover-xml-file=../shippable/codecoverage/py-coverage.xml --cover-xml
   - cd ..
   #- sudo ./build-shippable.sh
 

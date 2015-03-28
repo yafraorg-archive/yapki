@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# -------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------
 # Licensed to the Apache Software Foundation (ASF) under one
 # or more contributor license agreements.  See the NOTICE file
 # distributed with this work for additional information
@@ -21,20 +21,21 @@
 #
 #-------------------------------------------------------------------------------
 #
-# python eve run.py
+# python eve settings.py
 
 import os
-from app import app
+_basedir = os.path.abspath(os.path.dirname(__file__))
 
-# Heroku support: bind to PORT if defined, otherwise default to 5000.
-if 'PORT' in os.environ:
-    port = int(os.environ.get('PORT'))
-    # use '0.0.0.0' to ensure your REST API is reachable from all your
-    # network (and not only your computer).
-    host = '0.0.0.0'
-else:
-    port = 8080
-    host = '0.0.0.0'
+DEBUG = True
 
-if __name__ == '__main__':
-    app.run(host=host, port=port)
+SECRET_KEY = 'This string will be replaced with a proper key in production.'
+
+THREADS_PER_PAGE = 8
+
+CSRF_ENABLED = True
+CSRF_SESSION_KEY = "somethingimpossibletoguess"
+
+RECAPTCHA_USE_SSL = False
+RECAPTCHA_PUBLIC_KEY = '6LeYIbsSAAAAACRPIllxA7wvXjIE411PfdB2gt2J'
+RECAPTCHA_PRIVATE_KEY = '6LeYIbsSAAAAAJezaIq3Ft_hSTo0YtyeFG-JgRtu'
+RECAPTCHA_OPTIONS = {'theme': 'white'}

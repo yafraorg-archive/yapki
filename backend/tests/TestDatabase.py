@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# -------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------
 # Licensed to the Apache Software Foundation (ASF) under one
 # or more contributor license agreements.  See the NOTICE file
 # distributed with this work for additional information
@@ -21,20 +21,28 @@
 #
 #-------------------------------------------------------------------------------
 #
-# python eve run.py
+# python test unit
+__author__ = 'mwn'
 
-import os
-from app import app
+import imp
+database = imp.load_source('database', 'app/database.py')
 
-# Heroku support: bind to PORT if defined, otherwise default to 5000.
-if 'PORT' in os.environ:
-    port = int(os.environ.get('PORT'))
-    # use '0.0.0.0' to ensure your REST API is reachable from all your
-    # network (and not only your computer).
-    host = '0.0.0.0'
-else:
-    port = 8080
-    host = '0.0.0.0'
+import sys
+import unittest
+from database import Database
+import logging
+
+class TestDatabase(unittest.TestCase):
+    def setUp(self):
+        self.db = Database()
+
+    def testList(self):
+        x = self.db.certlist('tests/index.txt')
+        log= logging.getLogger( "yafratest" )
+        log.debug( "this= %s", x )
+        self.assertIsNotNone(x)
 
 if __name__ == '__main__':
-    app.run(host=host, port=port)
+    logging.basicConfig( stream=sys.stderr )
+    logging.getLogger( "yafratest" ).setLevel( logging.DEBUG )
+    unittest.main()

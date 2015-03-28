@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-#-------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------
 # Licensed to the Apache Software Foundation (ASF) under one
 # or more contributor license agreements.  See the NOTICE file
 # distributed with this work for additional information
@@ -17,26 +17,18 @@
 # specific language governing permissions and limitations
 # under the License.
 #
-# (c) yafra.org, 2002, Switzerland
+# (c) yafra.org, 2015, Switzerland
 #
 #-------------------------------------------------------------------------------
 #
-# python test unit
+# show html index page
+#
 __author__ = 'mwn'
 
-import imp
-database = imp.load_source('database', 'database.py')
+from flask import Blueprint, request, render_template, flash, g, session, redirect, url_for
 
-import unittest
-from database import Database
+webBp = Blueprint('web', __name__, template_folder='templates')
 
-class TestDatabase(unittest.TestCase):
-    def setUp(self):
-        self.db = Database()
-
-    def testList(self):
-        x = self.db.certlist('test/index.txt')
-        self.assertIsNotNone(x)
-
-if __name__ == '__main__':
-    unittest.main()
+@webBp.route('/')
+def home():
+    return render_template("index.html")

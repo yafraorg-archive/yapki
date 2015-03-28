@@ -17,24 +17,37 @@
 # specific language governing permissions and limitations
 # under the License.
 #
-# (c) yafra.org, 2002, Switzerland
+# (c) yafra.org, 2015, Switzerland
 #
 #-------------------------------------------------------------------------------
 #
-# python eve run.py
+# show html index page
+#
+__author__ = 'mwn'
 
-import os
-from app import app
+#import imp
+#database = imp.load_source('database', 'database.py')
+from ..database import Database
 
-# Heroku support: bind to PORT if defined, otherwise default to 5000.
-if 'PORT' in os.environ:
-    port = int(os.environ.get('PORT'))
-    # use '0.0.0.0' to ensure your REST API is reachable from all your
-    # network (and not only your computer).
-    host = '0.0.0.0'
-else:
-    port = 8080
-    host = '0.0.0.0'
+from flask import Blueprint, jsonify, make_response, json, current_app
 
-if __name__ == '__main__':
-    app.run(host=host, port=port)
+restBp = Blueprint('rest', __name__)
+
+@restBp.route('/db')
+def DbPage():
+    current_app.logger.info('start db list get')
+    myDb = Database()
+    #indexContent = myDb.certlist("/data/pki/yapki/index.txt")
+    indexContent = myDb.certlist("/work/repos/git/yapki/backend/tests/index.txt")
+    current_app.logger.debug(indexContent)
+    json_data = json.dumps(indexContent)
+    current_app.logger.debug(json_data)
+    response = make_response(json.dumps(indexContent), 200)
+    response.headers.add('Content-Type', 'application/json')
+    return response
+
+
+@restBp.route("/info")
+def InfoPage():
+    return jsonify(version='1.0.1',
+                   status='OK')

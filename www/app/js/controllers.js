@@ -46,6 +46,7 @@ PkiController.controller('DefaultCtrl', ['$scope', '$mdSidenav', 'SysMsg', funct
  */
 PkiController.controller('DbCtrl', ['$scope', 'SysMsg', 'Database', function ($scope, SysMsg, Database) {
     SysMsg.debug("start DbCtrl");
+    $scope.data = {};
 
 	// get server info
 	Database.query(

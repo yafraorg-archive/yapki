@@ -1,8 +1,8 @@
 /* Toolbar area */
 .ng-scope {
-    min-height: 200px !important;
-    height: 85vw !important;
-    max-height: 400px !important;
+    min-height: 400px !important;
+    /*height: 100% !important;*/
+    max-height: 100% !important;
 }
 
 
