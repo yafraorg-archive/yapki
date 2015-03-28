@@ -1,10 +1,10 @@
-<div layout="column" layout-fill>
+<div layout="column" style="height:500px;">
 
 	<md-toolbar>
 		<div class="md-toolbar-tools">
-        <md-button class="menu-icon" ng-click="toggleLeft()"
-							class="md-primary" hide-gt-md aria-label="Toggle Menu">
-            <i class="flaticon-menu55"></i>
+        <md-button ng-click="toggleLeft()"
+							md-fab md-primary md-hue-2 hide-gt-md aria-label="Toggle Menu">
+            <md-icon md-svg-src="assets/svg/ic_menu_24px.svg" style="width: 24px; height: 24px;"></md-icon>
         </md-button>
 				<span>yapki - Yet Another PKI</span>
 		</div>
@@ -13,7 +13,7 @@
 	<md-content flex class="md-padding">
 		<div layout="column">
 			<section layout="row" flex>
-				<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" flex>
+				<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
 					<md-toolbar class="md-theme-indigo">
 						<h3 class="md-toolbar-tools">Features</h3>
 					</md-toolbar>
