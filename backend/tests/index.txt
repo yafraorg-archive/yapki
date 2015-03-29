@@ -1,2 +1,4 @@
-V	350314161804Z		AE2588AA21D699C9	unknown	/C=CH/ST=Basel-Stadt/O=yafra.org/OU=test/CN=test/emailAddress=info@yafra.org
+V	350314161804Z		AE2588AA21D699C9	unknown	/C=CH/ST=Basel-Stadt/O=yafra.org/OU=test/CN=CA Cert/emailAddress=info@yafra.org
 V	350314162028Z		AE2588AA21D699CA	unknown	/C=CH/ST=Basel-Stadt/L=Basel/O=yafra.org/OU=Webserver/CN=yapki.yafra.org/emailAddress=webmaster@yafra.org
+R	350314162028Z	150315162028Z	AE2588AA21D699CB	unknown	/C=CH/ST=Basel-Stadt/L=Basel/O=yafra.org/OU=Webserver/CN=test revoke/emailAddress=revoked@yafra.org
+E	150314162028Z		AE2588AA21D699CC	unknown	/C=CH/ST=Basel-Stadt/L=Basel/O=yafra.org/OU=Webserver/CN=test expired/emailAddress=expired@yafra.org

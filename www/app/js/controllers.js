@@ -64,6 +64,11 @@ PkiController.controller('DbCtrl', ['$scope', 'SysMsg', 'Database', function ($s
  * Certificate Request controller
  */
 PkiController.controller('ReqCtrl', ['$scope', '$mdSidenav', 'SysMsg', function ($scope, $mdSidenav, SysMsg) {
+    SysMsg.debug("start ReqCtrl");
+
+	$scope.submit = function () {
+		SysMsg.debug('Send request to server: ');
+	};
 }]);
 
 /**

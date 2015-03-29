@@ -28,6 +28,7 @@ var PkiApp = angular.module('yapkiApp', [
     'ui.router',
     'ngResource',
     'ngMaterial',
+    'flow',
     'yapki.services',
     'yapki.services-rest',
     'yapki.controllers']);
@@ -54,7 +55,7 @@ PkiApp.run(['SysMsg', function (SysMsg) {
 /**
  * Routing table including associated controllers.
  */
-PkiApp.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+PkiApp.config(['$stateProvider', '$urlRouterProvider', 'flowFactoryProvider', function ($stateProvider, $urlRouterProvider, flowFactoryProvider) {
 
     $stateProvider
         .state('menu', {url: "/pki", abstract: true, templateUrl: "templates/main.html", controller: 'DefaultCtrl'})
@@ -77,4 +78,17 @@ PkiApp.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider,
 
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/pki/login');
+
+
+    flowFactoryProvider.defaults = {
+        target: 'upload',
+        permanentErrors: [404, 500, 501],
+        maxChunkRetries: 1,
+        chunkRetryInterval: 5000,
+        simultaneousUploads: 4
+        };
+    flowFactoryProvider.on('catchAll', function (event) {
+        console.log('catchAll', arguments);
+        });
+
 }]);

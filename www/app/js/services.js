@@ -26,27 +26,27 @@ PkiService.factory("SysMsg", ['appdebug', function (appdebug) {
 	return {
 		showAlert: function (message, title, buttonName) {
 			if (appdebug)
-				console.log("MCB log ERROR -> " + title + " " + message);
+				console.log("YAPKI log ERROR -> " + title + " " + message);
 		},
 		showAlertAndLog: function (message, objectName, errorMessage) {
 			if (appdebug)
-				console.log("MCB log ERROR - " + objectName + " -> " + message + " error message: " + errorMessage);
+				console.log("YAPKI log ERROR - " + objectName + " -> " + message + " error message: " + errorMessage);
 		},
 		showInfoAndLog: function (message, objectName, logMessage) {
 			if (appdebug)
-				console.log("MCB log - " + objectName + " -> " + message + " info message: " + logMessage);
+				console.log("YAPKI log - " + objectName + " -> " + message + " info message: " + logMessage);
 		},
 		showConfirmSimple: function (message, title) {
 			if (appdebug)
-				console.log("MCB log simple confirm -> " + message);
+				console.log("YAPKI log simple confirm -> " + message);
 		},
 		showConfirm: function (message, confirmCallback, title, buttonLabels) {
 			if (appdebug)
-				console.log("MCB log simple confirm -> " + message);
+				console.log("YAPKI log simple confirm -> " + message);
 		},
 		debug: function (message) {
 			if (appdebug)
-				console.log("MCB log -> " + message);
+				console.log("YAPKI log -> " + message);
 		},
 		device: function () {
 			var device = {};

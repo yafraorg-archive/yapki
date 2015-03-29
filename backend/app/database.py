@@ -33,6 +33,7 @@
 #
 __author__ = 'mwn'
 import re
+import datetime as dt
 
 class Database:
     def __init__(self):
@@ -48,8 +49,8 @@ class Database:
                 newline = line.rstrip('\n')
                 certFields = newline.split('\t')
                 certEntry['type'] = certFields[0]
-                certEntry['expdate'] = certFields[1]
-                certEntry['revdate'] = certFields[2]
+                certEntry['expdate'] = self.decode_time(certFields[1], "%y%m%d%H%M%SZ")
+                certEntry['revdate'] = self.decode_time(certFields[2], "%y%m%d%H%M%SZ")
                 certEntry['serial'] = certFields[3]
                 certEntry['file'] = certFields[4]
                 certEntry['name'] = certFields[5]
@@ -61,3 +62,10 @@ class Database:
                 certEntry['email'] = cn.group(1)
                 certs.append(certEntry)
         return certs
+
+    def decode_time(self, obj, format):
+        try:
+            parsedDate = dt.datetime.strptime(obj, format)
+            return parsedDate.strftime("%Y-%m-%dT%H:%M:%S")
+        except:
+            return 0
