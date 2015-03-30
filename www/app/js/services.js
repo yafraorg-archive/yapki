@@ -77,7 +77,7 @@ PkiService.factory("GlobalYapki", ['SysMsg', 'pkiserver', function (SysMsg, pkis
     var pkiServer = pkiserver;
 	return {
 		isServerSet: function () {
-			if (yapkiServerSet)
+			if (pkiServerSet)
             {
                 return true;
             }
