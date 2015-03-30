@@ -7,14 +7,14 @@ describe('default redirect', function() {
   browser.get('index.html');
 
   it('should automatically redirect to /pki/db when location hash/fragment is empty', function() {
-    expect(browser.getLocationAbsUrl()).toMatch("/pki/db");
+    expect(browser.getLocationAbsUrl()).toMatch("/pki/login");
   });
 
 
   describe('title of first page', function() {
 
     beforeEach(function() {
-      browser.get('index.html#/pki/db');
+      browser.get('index.html#/pki/login');
     });
 
 

@@ -11,6 +11,8 @@ module.exports = function(config){
         'app/bower_components/angular-animate/angular-animate.js',
         'app/bower_components/angular-mocks/angular-mocks.js',
         'app/bower_components/angular-material/angular-material.js',
+        'app/bower_components/ng-flow/dist/ng-flow-standalone.js',
+
         'app/js/*.js',
         'tests/*Test.js'
     ],
