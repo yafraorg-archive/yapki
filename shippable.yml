@@ -3,19 +3,8 @@ language: node_js
 node_js:
   - "0.10"
 
-language: python
-
-# version numbers
-python:
-   - "2.7"
-#   - "3.3"
-
 addons:
    firefox: "21.0"
-
-# environment variable
-#env:
-# - CHROME_BIN=/usr/bin/chrome
 
 install:
   - cd backend
@@ -23,9 +12,6 @@ install:
   - cd ../www
   - npm install
   - bower install
-#  - npm run update-webdriver
-#  - node_modules/.bin/webdriver-manager update
-  - sleep 1 # give server time to start
   - cd ..
 
 before_script:
@@ -35,13 +21,10 @@ before_script:
   - mkdir -p shippable/screenshots
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
-  #- npm start > /dev/null &
   - www/node_modules/.bin/http-server -p 8081 www/app/ &
   - sleep 1
 
 script:
-#  - node_modules/.bin/karma start karma.conf.js --no-auto-watch --single-run --reporters=dots --browsers=Firefox
-#  - node_modules/.bin/protractor e2e-tests/protractor.conf.js --browser=firefox
   - pwd
   - cd www
   - node_modules/.bin/gulp karma
