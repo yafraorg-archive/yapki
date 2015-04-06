@@ -65,6 +65,7 @@ sudo service apache2 start
 
 echo "setup server rest python"
 cp $YAPKI/backend/* $PKISERVER
+cp -r $YAPKI/backend/app $PKISERVER
 cd $PKISERVER
 pip install -r requirements.txt
 pip3 install -r requirements.txt
