@@ -1,0 +1,36 @@
+@startuml
+
+center header
+yapki system overview
+endheader
+
+object "openssl db" as db
+object "openssl admin" as oadm
+object "certificate authority" as ca
+' object "registration authority" as ra
+object "client certificates" as client
+object "server certificates" as server
+object browser
+object "email client" as mailclient
+object "web server" as webserver
+object "IMAP server" as mailserver
+
+oadm *-- db : stores
+oadm --- "1" ca : creates
+
+ca o-- "*" client : signs
+ca o-- "*" server : signs
+
+oadm --- client : issues
+oadm --- server : issues
+
+client --- "*" browser : used on
+client --- "*" mailclient
+server --- "1" webserver : used on
+server --- "1" mailserver
+
+center footer yapki is a project from yafra.org and hosted on github.com/yafraorg.
+
+
+
+@enduml
