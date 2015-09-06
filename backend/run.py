@@ -33,7 +33,7 @@ if 'PORT' in os.environ:
     # network (and not only your computer).
     host = '0.0.0.0'
 else:
-    port = 8080
+    port = 8081
     host = '0.0.0.0'
 
 if __name__ == '__main__':
