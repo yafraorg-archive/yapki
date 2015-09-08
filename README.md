@@ -1,7 +1,11 @@
-# YAPKI - Yet another PKI system
+# yafra.org YAPKI - Yet another PKI system
 
-Build on top of openssl this is a simple homebrew PKI for you. It uses Python Flask backend and AngularJS Material Design frontent. In addition several bash shell scripts and Perl scripts are provided.
+## Python and OpenSSL/PKI
+This repository holds a RESTful and Web server based on Python, Flask and Eve.
+The server reads data from a MongoDB and the openssl index file.
+It uses AngularJS Material Design frontent. In addition several bash shell scripts and Perl scripts are provided.
 
+Build on top of openssl this is a simple homebrew PKI for you. 
 [![Build Status](https://api.shippable.com/projects/54f760fd5ab6cc1352923222/badge?branchName=master)](https://app.shippable.com/projects/54f760fd5ab6cc1352923222/builds/latest)
 
 ## Install
@@ -26,6 +30,7 @@ Version string is set in:
 ## Automatic build and run environment
  * Shippable: https://app.shippable.com/projects/54f760fd5ab6cc1352923222
  * Docker: https://github.com/yafraorg/docker-yapki
+ * Openshift: http://python-yafraorg.rhcloud.com/
 
 ## Further information
 read more about yafra on:
