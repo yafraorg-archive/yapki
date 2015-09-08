@@ -55,9 +55,10 @@ script:
 
 after_success:
   - pwd
+  - cd ..
   - echo $BUILD_NUMBER
-  - sudo tar cvf /work/yapki-build.tar .
-  - sudo gzip /work/yapki-build.tar
-  - sudo -E cp /work/yapki-build.tar.gz /work/yapki-build-$BUILD_NUMBER.tar.gz
-  - sudo curl -T /work/yapki-build-$BUILD_NUMBER.tar.gz -u yafraorg:$BINTRAYAPI https://api.bintray.com/content/yafraorg/yafra-distribution/yafra-yapki/v1.0/
-  - sudo curl -T /work/yapki-build.tar.gz -u yafrarel@yafra.org:$YAFRAFTPPWD ftp://ftp.yafra.org/
+  - sudo tar cvf yapki-build.tar yapki/
+  - sudo gzip yapki-build.tar
+  - sudo -E cp yapki-build.tar.gz yapki-build-$BUILD_NUMBER.tar.gz
+  - sudo curl -T yapki-build-$BUILD_NUMBER.tar.gz -u yafraorg:$BINTRAYAPI https://api.bintray.com/content/yafraorg/yafra-distribution/yafra-yapki/v1.0/
+  - sudo curl -T yapki-build.tar.gz -u yafrarel@yafra.org:$YAFRAFTPPWD ftp://ftp.yafra.org/
