@@ -31,7 +31,7 @@ export YAPKI=$BASENODE/yapki
 export YAFRA=$BASENODE/yafra
 export YAFRADB=$BASENODE/yafra-database
 
-export WWWDIR=/var/www/html
+export WWWDIR=/var/www
 
 export PKINODE=/data/pki
 test -d $PKINODE || mkdir -p $PKINODE
@@ -70,6 +70,7 @@ cd $PKISERVER
 pip install -r requirements.txt
 pip3 install -r requirements.txt
 #python3 run.py &
-python run.py &
+#python run.py &
+/usr/bin/supervisord
 
 echo "done - running now YAPKI under nginx/perl/python with admin scripts under /usr/local/bin"
