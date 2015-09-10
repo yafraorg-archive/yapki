@@ -47,16 +47,21 @@ node_modules/.bin/bower --allow-root update
 cd app
 cp -r * $WWWDIR
 
-echo "setup openssl"
-cd $PKINODE
-mkdir yapki
-mkdir yapki/certs
-mkdir yapki/crl
-mkdir yapki/newcerts
-mkdir yapki/private
-cd $YAPKI/pki
-cp * $PKINODE
-echo "WARNING: if not done already - create as first action CA.pl -newca!"
+echo "setup openssl and pki structure"
+if [ -d "$PKINODE" ]; then
+    echo "Your PKI data is already available"
+else
+    cd $PKINODE
+    mkdir yapki
+    mkdir yapki/certs
+    mkdir yapki/crl
+    mkdir yapki/newcerts
+    mkdir yapki/private
+    cd $YAPKI/pki
+    cp * $PKINODE
+    echo "WARNING: You need to create as first action your CA certificate: CA.pl -newca!"
+fi
+
 
 echo "setup apache server with cgi perl"
 cd $YAPKI
