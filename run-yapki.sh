@@ -31,10 +31,9 @@ export YAPKI=$BASENODE/yapki
 export YAFRA=$BASENODE/yafra
 export YAFRADB=$BASENODE/yafra-database
 
+# operational directories (data, executables)
 export WWWDIR=/var/www
-
 export PKINODE=/data/pki
-test -d $PKINODE || mkdir -p $PKINODE
 
 export PKISERVER=/work/pkiserver
 test -d $PKISERVER || mkdir -p $PKISERVER
@@ -51,6 +50,7 @@ echo "setup openssl and pki structure"
 if [ -d "$PKINODE" ]; then
     echo "Your PKI data is already available"
 else
+    mkdir -p $PKINODE
     cd $PKINODE
     mkdir yapki
     mkdir yapki/certs
