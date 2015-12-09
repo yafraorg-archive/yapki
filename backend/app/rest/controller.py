@@ -25,6 +25,7 @@
 #
 __author__ = 'mwn'
 
+import settings
 #import imp
 #database = imp.load_source('database', 'database.py')
 from ..database import Database
@@ -37,8 +38,7 @@ restBp = Blueprint('rest', __name__)
 def DbPage():
     current_app.logger.info('start db list get')
     myDb = Database()
-    #indexContent = myDb.certlist("/data/pki/yapki/index.txt")
-    indexContent = myDb.certlist("/work/repos/git/yapki/backend/tests/index.txt")
+    indexContent = myDb.certlist(settings.PKIDIR)
     current_app.logger.debug(indexContent)
     json_data = json.dumps(indexContent)
     current_app.logger.debug(json_data)

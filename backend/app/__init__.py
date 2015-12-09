@@ -8,7 +8,7 @@ from logging.handlers import RotatingFileHandler
 from flask import Flask, render_template
 
 app = Flask(__name__)
-app.config.from_object('config')
+app.config.from_object('settings')
 handler = RotatingFileHandler('yapki.log', maxBytes=10000, backupCount=1)
 handler.setLevel(logging.DEBUG)
 app.logger.addHandler(handler)

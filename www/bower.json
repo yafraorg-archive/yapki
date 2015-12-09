@@ -1,15 +1,15 @@
 {
   "name": "YAPKI",
   "dependencies": {
-    "angular": "^1.4.x",
-    "angular-resource": "^1.4.x",
-    "angular-animate": "v1.4.x",
-    "angular-aria": "^1.4.x",
+    "angular": "~1.5",
+    "angular-resource": "~1.5",
+    "angular-animate": "~1.5",
+    "angular-aria": "~1.5",
     "angular-ui-router": "^0.x.x",
     "angular-material": "^0.x.x",
     "ng-flow": "^2.x.x"
   },
   "devDependencies": {
-    "angular-mocks": "^1.4.x"
+    "angular-mocks": "~1.5"
   }
 }

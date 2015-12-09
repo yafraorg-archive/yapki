@@ -25,6 +25,26 @@
 
 import os
 
+_basedir = os.path.abspath(os.path.dirname(__file__))
+
+DEBUG = True
+
+# define your openssl index.txt file
+#PKIDIR = '/data/pki/yapki/index.txt'
+PKIDIR = '/work/repos/yapki/backend/tests/index.txt'
+
+SECRET_KEY = 'This string will be replaced with a proper key in production.'
+
+THREADS_PER_PAGE = 8
+
+CSRF_ENABLED = True
+CSRF_SESSION_KEY = "somethingimpossibletoguess"
+
+RECAPTCHA_USE_SSL = False
+RECAPTCHA_PUBLIC_KEY = '6LeYIbsSAAAAACRPIllxA7wvXjIE411PfdB2gt2J'
+RECAPTCHA_PRIVATE_KEY = '6LeYIbsSAAAAAJezaIq3Ft_hSTo0YtyeFG-JgRtu'
+RECAPTCHA_OPTIONS = {'theme': 'white'}
+
 # Please note that MONGO_HOST and MONGO_PORT could very well be left
 # out as they already default to a bare bones local 'mongod' instance.
 MONGO_HOST = os.environ.get('DB_PORT_27017_TCP_ADDR', 'localhost')
