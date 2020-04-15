@@ -53,7 +53,7 @@
     "jasmine-reporters": "^1.0.0",
     "istanbul": "^0.3.7",
     "lodash": "^2.4.1",
-    "minimist": "^0.1.0",
+    "minimist": "^1.2.5",
     "mkdirp": "^0.5.0",
     "stream-series": "^0.1.1"
   }
