@@ -38,3 +38,22 @@ read more about yafra on:
  * https://github.com/yafraorg/yafra/wiki/Yapki
  * raise a ticket related to yafra.org framework: https://github.com/yafraorg/yafra/issues?state=open
  * raise a ticket related to this nodejs code: https://github.com/yafraorg/yafra-yapki/issues?state=open
+ 
+ 
+# yapki python server
+
+## setup
+pip install -r requirements.txt
+uvicorn server:app --reload
+
+fastapi
+uvicorn
+sqlalchemy
+
+## environment
+DEBUG=true
+DB_USER=user
+DB_USER_PWD=pass
+DB_HOST=xxxx
+DB_NAME=xxxx
+JWT_SECRET=a@!$afjk238jif390sfWEERU*"JçR(
