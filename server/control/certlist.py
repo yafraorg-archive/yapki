@@ -1,13 +1,19 @@
-def certlist(self, filename):
-    certs = []
+import re
+from .utils import decode_time
+from typing import List
+from ..model.certificate import Certificate
+
+
+def certlist(filename: str) -> List[Certificate]:
+    certs = List[Certificate]
     with open(filename, 'r') as infile:
         for line in infile:
             certEntry = {}
             newline = line.rstrip('\n')
             certFields = newline.split('\t')
             certEntry['type'] = certFields[0]
-            certEntry['expdate'] = self.decode_time(certFields[1], "%y%m%d%H%M%SZ")
-            certEntry['revdate'] = self.decode_time(certFields[2], "%y%m%d%H%M%SZ")
+            certEntry['expdate'] = decode_time(certFields[1], "%y%m%d%H%M%SZ")
+            certEntry['revdate'] = decode_time(certFields[2], "%y%m%d%H%M%SZ")
             certEntry['serial'] = certFields[3]
             certEntry['file'] = certFields[4]
             certEntry['name'] = certFields[5]
@@ -19,11 +25,3 @@ def certlist(self, filename):
             certEntry['email'] = cn.group(1)
             certs.append(certEntry)
     return certs
-
-
-def decode_time(self, obj, format):
-    try:
-        parsedDate = dt.datetime.strptime(obj, format)
-        return parsedDate.strftime("%Y-%m-%dT%H:%M:%S")
-    except:
-        return 0

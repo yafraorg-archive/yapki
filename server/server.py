@@ -2,13 +2,13 @@ from fastapi import Depends, FastAPI, HTTPException
 from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
 
-from .api import admin
+from .api.admin import apirouter
 from .database import SessionLocal, engine, Base
 
 
 app = FastAPI()
 
-app.include_router(admin.router, tags=["admin"])
+app.include_router(apirouter, tags=["admin"])
 
 
 @app.on_event("startup")

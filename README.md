@@ -51,9 +51,13 @@ uvicorn
 sqlalchemy
 
 ## environment
+Crate .env file with the following variables:
+
+```bash
 DEBUG=true
 DB_USER=user
 DB_USER_PWD=pass
 DB_HOST=xxxx
 DB_NAME=xxxx
 JWT_SECRET=a@!$afjk238jif390sfWEERU*"JçR(
+```
