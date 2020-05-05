@@ -3,15 +3,15 @@ from typing import List
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
-from ..model import apimodel
+from utils.database import get_db
+from model.certificate import Certificate
 
 apirouter = APIRouter()
 
 
-@apirouter.get("/list/", response_model=List[apimodel.Item])
-def read_items(skip: int = 0, limit: int = 100, db: Session = Depends(deps.get_db)):
+@apirouter.get("/list/", response_model=List[Certificate])
+def read_items(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
     """
     Read all the items. Doesn't need authentication.
     """
-    items = crud.get_items(db, skip=skip, limit=limit)
-    return items
+    return "x"

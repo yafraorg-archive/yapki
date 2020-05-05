@@ -2,14 +2,14 @@ from pydantic import BaseSettings
 
 
 class Settings(BaseSettings):
-    debug: str
-    db_user: str
-    db_user_pwd: str
-    db_host: str
-    db_name: str
-    db_type: str
-    jwt_secret: str
-    sqlalchemy_url: str
+    DEBUG: str = "true"
+    DB_USER: str = "yapki"
+    DB_USER_PWD: str = "yapki"
+    DB_HOST: str = "localhost"
+    DB_NAME: str = "yapki"
+    DB_TYPE: str = "mysql+pymysql"
+    JWT_SECRET: str = None
+    sqlalchemy_url: str = None
     # sqlalchemy_url: str = "postgresql://user:password@postgresserver/db"
     access_token_expire_minutes: int = 60 * 24 * 8  # 60 minutes * 24 hours * 8 days = 8 days
 
@@ -20,4 +20,4 @@ class Settings(BaseSettings):
 settings = Settings()
 
 if settings.sqlalchemy_url is None:
-    settings.sqlalchemy_url = settings.db_type + '://' + settings.db_user + ':' + settings.db_user_pwd + '@' + settings.db_host + '/' + settings.db_name
+    settings.sqlalchemy_url = settings.DB_TYPE + '://' + settings.DB_USER + ':' + settings.DB_USER_PWD + '@' + settings.DB_HOST + '/' + settings.DB_NAME

@@ -1,7 +1,7 @@
 import re
-from .utils import decode_time
+from utils.utils import decode_time
 from typing import List
-from ..model.certificate import Certificate
+from model.certificate import Certificate
 
 
 def certlist(filename: str) -> List[Certificate]:
