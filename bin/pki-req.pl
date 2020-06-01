@@ -157,7 +157,7 @@ Your certificate request is stored as: $req_file
 <BR>
 It will be sent to the following email address: $femail
 <P>
-Dein Zertifikat wird gepr&uuml;ft! Du erh&auml;lst das Zertifikat für Outlook und InternetExplorer
+Dein Zertifikat wird gepr&uuml;ft! Du erh&auml;lst das Zertifikat fï¿½r Outlook und InternetExplorer
 sobald es verifiziert wurde.
 <BR>
 Dein Zertifikat ist mit folgender ID gespeichert: $req_file
@@ -179,7 +179,7 @@ _END_TEXT_
 #        Data    => "Es liegt ein neuer cert request vor von $fcn !";
 #$msg->print(\*MAIL);
 #close(MAIL);
-#open (MAIL, "¦ /usr/sbin/sendmail -t");
+#open (MAIL, "ï¿½ /usr/sbin/sendmail -t");
 #print MAIL "Content-Type: text/html\n";
 #print MAIL "To: $tomail\n";
 #print MAIL "From: info\@yafra.org\n";

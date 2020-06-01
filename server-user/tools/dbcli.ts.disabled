@@ -1,0 +1,26 @@
+import "reflect-metadata";
+import {createConnection} from "typeorm";
+import {User} from "../src/entity/User";
+import { config } from "dotenv";
+
+config();
+
+console.log(`Current NODE_ENV is ${process.env.NODE_ENV}`);
+console.log(`Current NODE_ENV is ${process.env.DB_HOST}`);
+console.log(`Current NODE_ENV is ${process.env.DB_USER}`);
+
+createConnection({
+    type: 'mariadb',
+    host: process.env.DB_HOST,
+    port: 3306,
+    username: process.env.DB_USER,
+    password: process.env.DB_USER_PWD,
+    database: "test",
+    entities: [
+        User
+    ],
+    synchronize: true,
+    logging: false
+}).then(connection => {
+    // here you can start to work with your entities
+}).catch(error => console.log(error));
