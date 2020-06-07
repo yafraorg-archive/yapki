@@ -11,17 +11,18 @@ def certlist(filename: str) -> List[Certificate]:
             certEntry = {}
             newline = line.rstrip('\n')
             certFields = newline.split('\t')
-            certEntry['type'] = certFields[0]
-            certEntry['expdate'] = decode_time(certFields[1], "%y%m%d%H%M%SZ")
-            certEntry['revdate'] = decode_time(certFields[2], "%y%m%d%H%M%SZ")
-            certEntry['serial'] = certFields[3]
-            certEntry['file'] = certFields[4]
-            certEntry['name'] = certFields[5]
+            # decode_time(certFields[2], "%y%m%d%H%M%SZ")
+            myRevdate = certFields[2][:-1]
+            myExpdate = certFields[1][:-1]
+            certificate = Certificate(id=1, type=certFields[0], expdate=int(myExpdate),
+                                      revdate=int(myRevdate), serial=int(certFields[3]),
+                                      file=certFields[4], name=certFields[4], common_name="test", valid=True,
+                                      description="test", owner_id=1)
             # CN=(.+?)/
             # emailAddress=(.+?)$ or \\n on the end
-            cn = re.search("CN=(.+?)/", certEntry['name'])
-            certEntry['cn'] = cn.group(1)
-            cn = re.search("emailAddress=(.+?)$", certEntry['name'])
-            certEntry['email'] = cn.group(1)
-            certs.append(certEntry)
+            cn = re.search("CN=(.+?)/", certificate.name)
+            certificate.common_name = cn.group(1)
+            cn = re.search("emailAddress=(.+?)$", certificate.name)
+            certificate.email = cn.group(1)
+            certs.append(certificate)
     return certs
