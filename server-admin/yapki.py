@@ -13,7 +13,7 @@ print("yapki CLI")
 certs = List[Certificate]
 certs = certlist("../yapki/index.txt")
 for item in certs:
-    print("certificate is {item.serial}")
+    print(f"certificate is {item.json()}")
 
 db.Base.metadata.create_all(bind=engine)
 my_db: Session = SessionLocal()

@@ -5,18 +5,35 @@ export class CertificateEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ length: 500 })
-  name: string;
-
-  @Column('text')
-  description: string;
-
-  @Column()
-  filename: string;
-
   @Column('int')
-  views: number;
+  usage: number;
 
-  @Column()
-  isPublished: boolean;
+  @Column( 'char', { length: 10 })
+  type: string;
+
+  @Column( 'datetime' )
+  expdate: Date;
+
+  @Column( 'datetime' )
+  revdate: Date;
+
+  @Column( 'char', { length: 1024 })
+  serial: string;
+
+  @Column( 'char', { length: 1024 })
+  file: string;
+
+  @Column( 'char', { length: 1024 })
+  common_name: string;
+
+  @Column( 'text')
+  distinguished_name: string;
+
+  @Column( 'char', { length: 1024 })
+  email: string;
+
+  @Column( 'char', { length: 256 })
+  owner_id: string;
+
+  owner = relationship("DbUser", back_populates="certificate")
 }
