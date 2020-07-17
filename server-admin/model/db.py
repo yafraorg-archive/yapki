@@ -14,20 +14,21 @@ class DbUser(Base):
     role = Column(Integer, index=False)
     is_active = Column(Boolean, default=True)
 
+    certificate = relationship("DbCertificate", back_populates="owner")
 
 class DbCertificate(Base):
     __tablename__ = "certificate"
 
     id = Column(Integer, primary_key=True, index=True)
     usage = Column(Integer, index=True)
-    type = Column(String(10), index=True)
+    state = Column(String(10), index=True)
     expdate = Column(DateTime, index=True)
     revdate = Column(DateTime, index=False)
-    serial = Column(String(1024), index=True)
+    serial = Column(String(1024), unique=True, index=True)
     file = Column(String(1024), index=False)
     common_name = Column(String(1024), index=False)
-    distinguished_name = Column(Text, index=False)
     email = Column(String(256), index=True)
+    distinguished_name = Column(Text, index=False)
     owner_id = Column(Integer, ForeignKey("users.id"))
 
     owner = relationship("DbUser", back_populates="certificate")

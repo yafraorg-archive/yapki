@@ -23,7 +23,7 @@ def certlist(filename: str) -> List[Certificate]:
             else:
                 # the string is empty
                 myRevDate = 0
-            certificate = Certificate(state=certFields[0], expdate=myExpDate,
+            certificate = Certificate(state=certFields[0], usage=1, expdate=myExpDate,
                                       revdate=myRevDate, serial=certFields[3],
                                       file=certFields[4], common_name=myCn.group(1),
                                       distinguished_name=certFields[5], owner_id=1, email=myEmail.group(1))
