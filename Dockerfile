@@ -19,37 +19,26 @@
 #
 
 # source is yafra ubuntu
-FROM yafraorg/docker-yafrabase
+FROM alpine:3
 MAINTAINER Martin Weber <info@yafra.org>
 
 # Install common packages
 RUN \
   apk update && \
   apk upgrade && \
-  apk add --update openssl openssl-dev nodejs supervisor apache2 apache2-mod-wsgi apache2-ssl libffi libffi-dev build-base gcc && \
+  apk add --update git openssl openssl-dev nodejs supervisor apache2 apache2-mod-wsgi apache2-ssl libffi libffi-dev build-base gcc && \
 #  apk add --update python python-dev py-pip py-cffi
   apk add --update python3 python3-dev
 
 # Install git repositories
 RUN \
-  mkdir -p /work/repos && \
-  mkdir -p /work/yafra-runtime && \
-  cd /work/repos && \
-  git clone https://github.com/yafraorg/yafra.git && \
-  git clone https://github.com/yafraorg/yapki.git
+  mkdir -p /work && \
+  cd /work
 
+WORKDIR /work
+COPY . /work
 
-# Change default port of apache and install modules
-#RUN \
-#  a2enmod cgid wsgi ssl && \
-#  sed -i "/Listen/s/80/8081/" /etc/apache2/ports.conf
-
-# Install run script
-RUN mkdir /etc/supervisor.d
-COPY supervisord.conf /etc/supervisor.d/yapki.ini
-#COPY run-docker.sh /work/run-docker.sh
-
-RUN cd /work/repos/yapki/backend && \
+RUN cd /work/server-admin && \
   python3 -m ensurepip && \
   rm  -r /usr/lib/python*/ensurepip && \
   pip3 install --upgrade pip setuptools && \
