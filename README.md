@@ -1,9 +1,7 @@
 # yafra.org YAPKI - Yet another PKI system
 
 ## Python and OpenSSL/PKI
-This repository holds a RESTful and Web server based on Python, Flask and Eve.
-The server reads data from a MongoDB and the openssl index file.
-It uses AngularJS Material Design frontent. In addition several bash shell scripts and Perl scripts are provided.
+This repository holds a RESTful server based on Python, Flask and Eve.
 
 Build on top of openssl this is a simple homebrew PKI for you. 
 [![Build Status](https://api.shippable.com/projects/54f760fd5ab6cc1352923222/badge?branchName=master)](https://app.shippable.com/projects/54f760fd5ab6cc1352923222/builds/latest)
@@ -18,6 +16,9 @@ Build on top of openssl this is a simple homebrew PKI for you.
 * Run gensshcert.sh to generate a SSH certificate like for Putty or openssh
 * Run gencrl.sh to generate a CRL lits to be published
 
+
+## Run the server
+uvicorn server:app --reload
 
 ## Version settings
 Version string is set in:

@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
-# -------------------------------------------------------------------------------
+#!/bin/sh
+#-------------------------------------------------------------------------------
 #  Copyright 2020 yafra.org
 #
 #  Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,15 +13,16 @@
 #  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
-# -------------------------------------------------------------------------------
 #
-# YAPKI utils
-from datetime import datetime
+# function:	generate public key from private key
+#-------------------------------------------------------------------------------
 
+# arguments are: 1: crl days
+if [ -z "$1" ]; then
+        echo Please specify private key as PEM file
+        exit
+fi
 
-def decode_time(obj, format):
-    try:
-        parsed_date = datetime.strptime(obj, format)
-        return parsed_date.strftime("%Y-%m-%dT%H:%M:%S")
-    except:
-        return 0
+echo "creating the public key out of your private key $1 as file public_key.pem"
+openssl rsa -in $1 -pubout -out public_key.pem
+

@@ -15,25 +15,56 @@
 #  limitations under the License.
 # -------------------------------------------------------------------------------
 #
-# YAPKI CLI
+# YAPKI object model certificate
 from typing import List
-
-from fastapi import APIRouter, Depends, HTTPException
-from sqlalchemy.orm import Session
-
-from control import certificate
-from utils.database import get_db
-from model import schemas, db
-
-apirouter = APIRouter()
+from datetime import date, datetime, time, timedelta
+from pydantic import BaseModel
 
 
-@apirouter.get("/certificate/", response_model=List[schemas.Certificate])
-def read_certificate(db: Session = Depends(get_db)):
-    db_certificates = certificate.get_certificates(db)
-    if db_certificates == 0:
-        raise HTTPException(status_code=400, detail="no certificates in database")
-    return db_certificates
+class Certificate(BaseModel):
+    id: int
+    usage: int
+    state: str
+    expdate: datetime
+    revdate: datetime = 0
+    serial: str
+    file: str
+    common_name: str
+    email: str
+    distinguished_name: str
+    owner_id: int
+
+    class Config:
+        orm_mode = True
+
+    @classmethod
+    def shortname(cls):
+        return cls.common_name
 
 
 
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+
+
+class TokenPayload(BaseModel):
+    sub: int
+
+
+
+class UserBase(BaseModel):
+    email: str
+    name: str
+
+
+class UserCreate(UserBase):
+    password: str
+
+
+class User(UserBase):
+    id: int
+    is_active: bool
+
+    class Config:
+        orm_mode = True

@@ -312,6 +312,16 @@ paths:
         "404":
           description: User not found
           content: {}
+  /admin/request:
+    get:
+      tags:
+      - administration
+      summary: Logs out current logged in user session
+      operationId: logoutUser
+      responses:
+        default:
+          description: successful operation
+          content: {}
 components:
   schemas:
     Certificate:
